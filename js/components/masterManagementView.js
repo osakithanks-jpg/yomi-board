@@ -105,6 +105,9 @@ export function renderMasterManagement(container) {
                 <button data-tab="targets" class="px-3 py-2 rounded-md transition ${activeTab === 'targets' ? 'bg-indigo-600 text-white shadow' : 'text-slate-600 hover:text-slate-900'}">
                   個人Q目標管理
                 </button>
+                <button data-tab="data_management" class="px-3 py-2 rounded-md transition ${activeTab === 'data_management' ? 'bg-rose-600 text-white shadow font-black' : 'text-rose-700 bg-rose-50 hover:bg-rose-100'}">
+                  ⚙️ データ管理・初期化
+                </button>
               ` : ''}
             </div>
           </div>
@@ -116,6 +119,7 @@ export function renderMasterManagement(container) {
           ${activeTab === 'jobs' ? renderJobMaster(filterItems(jobs), companiesMap, consultantsMap, raConsultants, isAdmin) : ''}
           ${activeTab === 'consultants' && isAdmin ? renderConsultantMaster(filterItems(consultants)) : ''}
           ${activeTab === 'targets' && isAdmin ? renderQTargetMaster(consultants, qTargets, targetFiscalYear, (fy) => { targetFiscalYear = fy; saveMasterState({ targetFiscalYear: fy }); updateView(); }) : ''}
+          ${activeTab === 'data_management' && isAdmin ? renderDataManagementSection(updateView) : ''}
         </div>
       </div>
     `;
@@ -344,11 +348,22 @@ function renderConsultantMaster(consultants) {
           <tbody class="divide-y divide-slate-200">
             ${consultants.map(c => {
               const isEff = c.status !== 'inactive' && !c.isArchived;
+              const rolesList = (c.roles && Array.isArray(c.roles) && c.roles.length > 0)
+                ? c.roles
+                : [c.roleType || 'CA'];
+
+              const roleBadgesHTML = rolesList.map(r => {
+                if (r === 'CA') return '<span class="px-2 py-0.5 bg-blue-100 text-blue-800 border border-blue-200 font-extrabold rounded text-[11px] mr-1">CA</span>';
+                if (r === 'RA') return '<span class="px-2 py-0.5 bg-purple-100 text-purple-800 border border-purple-200 font-extrabold rounded text-[11px] mr-1">RA</span>';
+                if (r === 'ADMIN') return '<span class="px-2 py-0.5 bg-rose-100 text-rose-800 border border-rose-200 font-extrabold rounded text-[11px] mr-1">管理者</span>';
+                return `<span class="px-2 py-0.5 bg-slate-100 text-slate-800 font-bold rounded text-[11px] mr-1">${r}</span>`;
+              }).join('');
+
               return `
                 <tr class="${c.isArchived ? 'bg-slate-100/80 text-slate-400' : 'hover:bg-slate-50'} transition">
                   <td class="px-3 py-2.5 font-bold text-slate-900">${c.name}</td>
                   <td class="px-3 py-2.5 font-mono text-slate-600">${c.email}</td>
-                  <td class="px-3 py-2.5 font-bold text-indigo-700">${c.roleType || 'CA'}</td>
+                  <td class="px-3 py-2.5 font-bold">${roleBadgesHTML}</td>
                   <td class="px-3 py-2.5">
                     ${c.isArchived 
                       ? '<span class="px-2 py-0.5 bg-rose-100 text-rose-800 font-bold rounded">アーカイブ済み</span>' 
@@ -938,13 +953,20 @@ function openJobFormModal(job = null, onClose) {
 }
 
 /**
- * コンサル 登録・編集モーダル (指示書 5項)
+ * コンサル 登録・編集モーダル (指示書 2, 4, 5, 13, 15項)
  */
 function openConsultantFormModal(consultant = null, onClose) {
   let modalEl = document.getElementById('consultant-form-modal');
   if (modalEl) modalEl.remove();
 
   const isEdit = !!consultant;
+  const currentRoles = (consultant && consultant.roles && Array.isArray(consultant.roles))
+    ? consultant.roles
+    : (consultant ? [consultant.roleType || 'CA'] : ['CA']);
+
+  const hasCA = currentRoles.includes('CA');
+  const hasRA = currentRoles.includes('RA');
+  const hasAdmin = currentRoles.includes('ADMIN');
 
   modalEl = document.createElement('div');
   modalEl.id = 'consultant-form-modal';
@@ -970,23 +992,32 @@ function openConsultantFormModal(consultant = null, onClose) {
           <input type="email" id="cons-email" value="${consultant ? consultant.email : ''}" required class="w-full bg-slate-50 border border-slate-300 rounded px-3 py-2 font-bold text-slate-900 focus:bg-white focus:border-indigo-600 focus:outline-none">
         </div>
 
-        <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label class="block font-bold text-slate-800 mb-1">役割 <span class="text-rose-500">*</span></label>
-            <select id="cons-role-type" required class="w-full bg-slate-50 border border-slate-300 font-bold rounded px-2.5 py-1.5 text-slate-800 focus:outline-none">
-              <option value="CA" ${consultant && consultant.roleType === 'CA' ? 'selected' : ''}>CA (キャリアアドバイザー)</option>
-              <option value="RA" ${consultant && consultant.roleType === 'RA' ? 'selected' : ''}>RA (リクルーティングアドバイザー)</option>
-              <option value="ADMIN" ${consultant && consultant.roleType === 'ADMIN' ? 'selected' : ''}>管理者 (ADMIN)</option>
-            </select>
+        <!-- 役割 複数選択チェックボックス (指示書 2, 13項) -->
+        <div class="space-y-2 bg-slate-50 p-3 rounded-lg border border-slate-200">
+          <label class="block font-bold text-slate-800">担当役割 (複数選択可) <span class="text-rose-500">*</span></label>
+          <div class="flex flex-wrap items-center gap-4 pt-1 font-bold text-slate-700">
+            <label class="inline-flex items-center space-x-1.5 cursor-pointer">
+              <input type="checkbox" class="chk-cons-role rounded text-indigo-600 focus:ring-indigo-500" value="CA" ${hasCA ? 'checked' : ''}>
+              <span>CA (キャリアアドバイザー)</span>
+            </label>
+            <label class="inline-flex items-center space-x-1.5 cursor-pointer">
+              <input type="checkbox" class="chk-cons-role rounded text-indigo-600 focus:ring-indigo-500" value="RA" ${hasRA ? 'checked' : ''}>
+              <span>RA (リクルーティングアドバイザー)</span>
+            </label>
+            <label class="inline-flex items-center space-x-1.5 cursor-pointer">
+              <input type="checkbox" class="chk-cons-role rounded text-indigo-600 focus:ring-indigo-500" value="ADMIN" ${hasAdmin ? 'checked' : ''}>
+              <span>管理者 (ADMIN)</span>
+            </label>
           </div>
+          <p class="text-[11px] text-slate-500 mt-1">※CAとRAの両方にチェックを入れると両面担当者として登録されます。</p>
+        </div>
 
-          <div>
-            <label class="block font-bold text-slate-800 mb-1">有効・無効 <span class="text-rose-500">*</span></label>
-            <select id="cons-status" required class="w-full bg-slate-50 border border-slate-300 font-bold rounded px-2.5 py-1.5 text-slate-800 focus:outline-none">
-              <option value="active" ${!consultant || consultant.status !== 'inactive' ? 'selected' : ''}>有効</option>
-              <option value="inactive" ${consultant && consultant.status === 'inactive' ? 'selected' : ''}>無効</option>
-            </select>
-          </div>
+        <div>
+          <label class="block font-bold text-slate-800 mb-1">有効・無効 <span class="text-rose-500">*</span></label>
+          <select id="cons-status" required class="w-full bg-slate-50 border border-slate-300 font-bold rounded px-2.5 py-1.5 text-slate-800 focus:outline-none">
+            <option value="active" ${!consultant || consultant.status !== 'inactive' ? 'selected' : ''}>有効</option>
+            <option value="inactive" ${consultant && consultant.status === 'inactive' ? 'selected' : ''}>無効</option>
+          </select>
         </div>
       </form>
 
@@ -1002,7 +1033,6 @@ function openConsultantFormModal(consultant = null, onClose) {
   modalEl.querySelector('#btn-cons-submit')?.addEventListener('click', () => {
     const name = modalEl.querySelector('#cons-name').value.trim();
     const email = modalEl.querySelector('#cons-email').value.trim();
-    const roleType = modalEl.querySelector('#cons-role-type').value;
     const status = modalEl.querySelector('#cons-status').value;
 
     if (!name || !email) {
@@ -1010,17 +1040,77 @@ function openConsultantFormModal(consultant = null, onClose) {
       return;
     }
 
-    if (store.checkConsultantEmailDuplicate(email, consultant ? consultant.consultantId : null)) {
-      alert('このメールアドレスは、すでに登録されています。');
+    // チェックされた役割の収集
+    const checkedRoles = Array.from(modalEl.querySelectorAll('.chk-cons-role:checked')).map(cb => cb.value);
+    if (checkedRoles.length === 0) {
+      alert('役割を少なくとも1つ選択してください。（CA、RA、管理者のいずれか）');
       return;
     }
 
+    const currentConsId = consultant ? consultant.consultantId : null;
+
+    // 役割解除時の既存案件参照チェック (指示書 15項)
+    if (isEdit && consultant) {
+      if (hasRA && !checkedRoles.includes('RA')) {
+        const raInUseCount = store.checkConsultantRoleInUse(consultant.consultantId, 'RA');
+        if (raInUseCount > 0) {
+          alert(`この担当者は ${raInUseCount} 件の選考案件で RA に設定されています。\nRA 役割を外す前に、該当選考案件の担当 RA を変更してください。`);
+          return;
+        }
+      }
+      if (hasCA && !checkedRoles.includes('CA')) {
+        const caInUseCount = store.checkConsultantRoleInUse(consultant.consultantId, 'CA');
+        if (caInUseCount > 0) {
+          alert(`この担当者は ${caInUseCount} 件の選考案件で CA に設定されています。\nCA 役割を外す前に、該当選考案件の担当 CA を変更してください。`);
+          return;
+        }
+      }
+    }
+
+    // メールアドレス重複判定 (指示書 4, 5項)
+    const dupInfo = store.checkConsultantEmailDuplicateInfo(email, currentConsId, name);
+
+    if (dupInfo.isDuplicate) {
+      const existing = dupInfo.existingConsultant;
+
+      if (!dupInfo.isSameName) {
+        // 氏名が異なる場合 (指示書 5項)
+        alert(`【警告: メールアドレス重複】\n\nこのメールアドレスは別の担当者に登録されています。\n\n登録済み: ${existing.name}\n入力中: ${name}\n\n登録内容を確認してください。`);
+        return;
+      }
+
+      // 同一氏名の場合、既存データへ役割を追加 (指示書 4項)
+      const existingRoles = (existing.roles && Array.isArray(existing.roles)) ? existing.roles : [existing.roleType || 'CA'];
+      const mergedRoles = Array.from(new Set([...existingRoles, ...checkedRoles]));
+      const addedRoles = checkedRoles.filter(r => !existingRoles.includes(r));
+
+      const msg = `このメールアドレスは、すでに「${existing.name}」として登録されています。\n\n現在の役割: ${existingRoles.join('・')}\n追加する役割: ${addedRoles.length > 0 ? addedRoles.join('・') : '追加なし'}\n\n既存の担当者レコードへ役割を追加統合しますか？`;
+
+      if (confirm(msg)) {
+        store.saveConsultant({
+          consultantId: existing.consultantId,
+          name: existing.name,
+          email: existing.email,
+          roles: mergedRoles,
+          roleType: mergedRoles.includes('ADMIN') ? 'ADMIN' : (mergedRoles.includes('CA') ? 'CA' : 'RA'),
+          role: mergedRoles.includes('ADMIN') ? 'admin' : 'member',
+          status: status
+        });
+        modalEl.remove();
+        onClose();
+      }
+      return;
+    }
+
+    // 正常保存
+    const primaryRoleType = checkedRoles.includes('ADMIN') ? 'ADMIN' : (checkedRoles.includes('CA') ? 'CA' : 'RA');
     store.saveConsultant({
-      consultantId: consultant ? consultant.consultantId : undefined,
+      consultantId: currentConsId || undefined,
       name,
       email,
-      roleType,
-      role: roleType === 'ADMIN' ? 'admin' : 'member',
+      roles: checkedRoles,
+      roleType: primaryRoleType,
+      role: primaryRoleType === 'ADMIN' ? 'admin' : 'member',
       status
     });
 
@@ -1096,4 +1186,303 @@ function openReassignModal(fromConsultantId, fromConsultantName, counts, onProce
     modalEl.remove();
     onProceed();
   });
+}
+
+/**
+ * 管理者専用 データ管理 ＆ 初期化 ＆ 監査履歴セクション (指示書 4, 5, 8, 9, 10, 16, 17, 18, 19, 21項)
+ */
+function renderDataManagementSection(onUpdate) {
+  const previews = store.getDeletionPreviewCounts();
+  const demoPreview = previews.demo;
+  const allPreview = previews.all;
+  const auditLogs = store.getAuditLogs();
+
+  setTimeout(() => {
+    const section = document.getElementById('data-management-container');
+    if (!section) return;
+
+    // 1. デモデータ削除ボタン
+    section.querySelector('#btn-delete-demo-data')?.addEventListener('click', () => {
+      if (demoPreview.total === 0) {
+        alert('削除対象となるデモデータは現在存在しません。');
+        return;
+      }
+
+      const msg = `【デモデータ削除の確認】\n\nデモとして登録されたデータを削除しますか？\n\n■ 削除対象データ (計 ${demoPreview.total} 件):\n・デモ選考案件: ${demoPreview.selections} 件\n・デモ候補者: ${demoPreview.candidates} 件\n・デモ求人: ${demoPreview.jobs} 件\n・デモ企業: ${demoPreview.companies} 件\n・デモ関連履歴: ${demoPreview.histories + demoPreview.companyCommunications} 件\n\n※実データおよびログインコンサルタントは削除されません。`;
+      if (confirm(msg)) {
+        try {
+          const deleted = store.deleteDemoData();
+          alert(`初期化が完了しました。\n\n・選考案件: ${deleted.selections} 件削除\n・候補者: ${deleted.candidates} 件削除\n・求人: ${deleted.jobs} 件削除\n・企業: ${deleted.companies} 件削除\n・関連履歴: ${deleted.histories + deleted.companyCommunications} 件削除`);
+          onUpdate();
+        } catch (err) {
+          alert('エラーが発生しました: ' + err.message);
+        }
+      }
+    });
+
+    // 2. 種別選択削除
+    section.querySelector('#btn-delete-selected-data')?.addEventListener('click', () => {
+      const checkedInputs = Array.from(section.querySelectorAll('.chk-data-type:checked'));
+      if (checkedInputs.length === 0) {
+        alert('削除するデータ種別を1つ以上選択してください。');
+        return;
+      }
+
+      const selectedTypes = checkedInputs.map(i => i.value);
+      const typeNames = checkedInputs.map(i => i.getAttribute('data-name')).join('・');
+
+      if (confirm(`選択したデータ種別（${typeNames}）を削除します。\nよろしいですか？`)) {
+        try {
+          store.deleteSelectedDataTypes(selectedTypes);
+          alert('選択したデータ種別の削除が完了しました。');
+          onUpdate();
+        } catch (err) {
+          alert('削除エラー: ' + err.message);
+        }
+      }
+    });
+
+    // 3. 全業務データ初期化 (強い確認操作: 指示書 9項)
+    section.querySelector('#btn-open-reset-all-modal')?.addEventListener('click', () => {
+      if (allPreview.total === 0) {
+        alert('削除対象となる業務データは現在ありません。');
+        return;
+      }
+
+      let modalEl = document.getElementById('modal-reset-all-confirm');
+      if (modalEl) modalEl.remove();
+
+      modalEl = document.createElement('div');
+      modalEl.id = 'modal-reset-all-confirm';
+      modalEl.className = 'fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-xs flex items-center justify-center p-4';
+      modalEl.innerHTML = `
+        <div class="bg-white rounded-2xl shadow-2xl border border-rose-200 max-w-md w-full p-6 space-y-4 text-xs animate-fadeIn">
+          <div class="flex items-center space-x-2 text-rose-600 font-extrabold text-base border-b border-rose-100 pb-3">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            <span>全業務データの初期化 (危険操作)</span>
+          </div>
+
+          <div class="space-y-2 text-slate-700 font-medium leading-relaxed">
+            <p class="text-rose-700 font-bold">この操作により、候補者・企業・求人・選考案件・関連履歴などの全業務データ (${allPreview.total} 件) が完全に削除されます。</p>
+            <p class="text-slate-500 text-[11px]">※この操作は元に戻せません。管理者ログインアカウントおよびシステム設定は保護されます。</p>
+          </div>
+
+          <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-2">
+            <label class="block font-bold text-slate-800">
+              実行するには <span class="text-rose-600 font-mono font-black select-all">全データを初期化</span> と入力してください：
+            </label>
+            <input type="text" id="input-confirm-text-reset" placeholder="全データを初期化" class="w-full bg-white border border-slate-300 rounded px-3 py-2 text-slate-900 font-bold focus:outline-none focus:border-rose-600">
+          </div>
+
+          <div class="flex items-center justify-end space-x-3 pt-2">
+            <button id="btn-modal-cancel-reset" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded font-bold transition">
+              キャンセル
+            </button>
+            <button id="btn-modal-exec-reset" disabled class="px-4 py-2 bg-rose-600 hover:bg-rose-700 disabled:opacity-40 text-white rounded font-extrabold transition shadow-md">
+              初期化を実行
+            </button>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(modalEl);
+
+      const confirmInput = modalEl.querySelector('#input-confirm-text-reset');
+      const execBtn = modalEl.querySelector('#btn-modal-exec-reset');
+      const cancelBtn = modalEl.querySelector('#btn-modal-cancel-reset');
+
+      confirmInput.addEventListener('input', () => {
+        if (confirmInput.value.trim() === '全データを初期化') {
+          execBtn.removeAttribute('disabled');
+        } else {
+          execBtn.setAttribute('disabled', 'true');
+        }
+      });
+
+      cancelBtn.addEventListener('click', () => modalEl.remove());
+
+      execBtn.addEventListener('click', () => {
+        try {
+          execBtn.innerText = 'データを初期化中...';
+          execBtn.setAttribute('disabled', 'true');
+
+          const resultCounts = store.resetAllBusinessData();
+          modalEl.remove();
+          alert(`初期化が完了しました。\n\n・選考案件: ${resultCounts.selections} 件削除\n・候補者: ${resultCounts.candidates} 件削除\n・求人: ${resultCounts.jobs} 件削除\n・企業: ${resultCounts.companies} 件削除\n・関連履歴: ${resultCounts.histories + resultCounts.companyCommunications} 件削除\n\nログインアカウントとシステム設定は保持されています。`);
+          onUpdate();
+        } catch (err) {
+          alert('初期化エラー: ' + err.message);
+          modalEl.remove();
+        }
+      });
+    });
+
+    // 4. 手動デモデータ再作成
+    section.querySelector('#btn-seed-demo-data')?.addEventListener('click', () => {
+      if (confirm('初期デモデータ（サンプル候補者・企業・求人・選考案件）を再生成しますか？')) {
+        try {
+          const counts = store.seedDemoData();
+          alert(`デモデータの作成が完了しました。 (選考案件:${counts.selections}件, 候補者:${counts.candidates}件, 企業:${counts.companies}件)`);
+          onUpdate();
+        } catch (err) {
+          alert('エラー: ' + err.message);
+        }
+      }
+    });
+  }, 0);
+
+  return `
+    <div id="data-management-container" class="space-y-6">
+      <div class="border-b border-slate-200 pb-3">
+        <h3 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+          <span>⚙️ データ管理 ＆ 初期化設定</span>
+          <span class="text-[10px] bg-rose-100 text-rose-800 border border-rose-300 font-bold px-2 py-0.5 rounded">管理者専用</span>
+        </h3>
+        <p class="text-xs text-slate-500 mt-1">デモデータの削除、特定テーブルの削除、全業務データの初期化、および過去の操作履歴を確認できます。</p>
+      </div>
+
+      <!-- 1. デモデータのみ削除 (指示書 5-1項) -->
+      <div class="bg-amber-50/70 p-5 rounded-xl border border-amber-200 space-y-3">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h4 class="font-bold text-amber-950 text-sm flex items-center gap-2">
+              <span>🧹 デモデータのみ一括削除</span>
+              <span class="text-xs bg-amber-200/80 text-amber-900 px-2 py-0.5 rounded-full font-bold">デモ件数: 計 ${demoPreview.total} 件</span>
+            </h4>
+            <p class="text-xs text-slate-600 mt-1">
+              初期デモとして登録された候補者・企業・求人・選考案件・履歴を一括削除します。※手動登録された実データおよびログインコンサルタントは削除されません。
+            </p>
+          </div>
+
+          <button id="btn-delete-demo-data" ${demoPreview.total === 0 ? 'disabled' : ''} class="shrink-0 px-4 py-2 bg-amber-600 hover:bg-amber-700 disabled:opacity-40 text-white rounded-lg font-bold shadow-sm transition">
+            デモデータを削除 (${demoPreview.total}件)
+          </button>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] pt-1 font-semibold text-amber-900">
+          <div class="bg-white/80 p-2 rounded border border-amber-200">選考案件: ${demoPreview.selections} 件</div>
+          <div class="bg-white/80 p-2 rounded border border-amber-200">候補者: ${demoPreview.candidates} 件</div>
+          <div class="bg-white/80 p-2 rounded border border-amber-200">企業: ${demoPreview.companies} 件</div>
+          <div class="bg-white/80 p-2 rounded border border-amber-200">求人: ${demoPreview.jobs} 件</div>
+        </div>
+      </div>
+
+      <!-- 2. データ種別を選択して削除 (指示書 5-2項) -->
+      <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-4">
+        <div>
+          <h4 class="font-bold text-slate-900 text-sm">📋 データ種別を指定して削除</h4>
+          <p class="text-xs text-slate-500 mt-0.5">特定のデータ種別を選択して個別クリアできます。（削除時のデータ依存関係は自動で考慮されます）</p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+          <label class="inline-flex items-center space-x-2 bg-white p-2.5 rounded-lg border border-slate-200 cursor-pointer font-bold hover:border-indigo-300">
+            <input type="checkbox" class="chk-data-type rounded text-indigo-600" value="selections" data-name="選考案件">
+            <span>選考案件 (${allPreview.selections}件)</span>
+          </label>
+          <label class="inline-flex items-center space-x-2 bg-white p-2.5 rounded-lg border border-slate-200 cursor-pointer font-bold hover:border-indigo-300">
+            <input type="checkbox" class="chk-data-type rounded text-indigo-600" value="candidates" data-name="候補者">
+            <span>候補者 (${allPreview.candidates}件)</span>
+          </label>
+          <label class="inline-flex items-center space-x-2 bg-white p-2.5 rounded-lg border border-slate-200 cursor-pointer font-bold hover:border-indigo-300">
+            <input type="checkbox" class="chk-data-type rounded text-indigo-600" value="companies" data-name="企業">
+            <span>企業 (${allPreview.companies}件)</span>
+          </label>
+          <label class="inline-flex items-center space-x-2 bg-white p-2.5 rounded-lg border border-slate-200 cursor-pointer font-bold hover:border-indigo-300">
+            <input type="checkbox" class="chk-data-type rounded text-indigo-600" value="jobs" data-name="求人">
+            <span>求人 (${allPreview.jobs}件)</span>
+          </label>
+          <label class="inline-flex items-center space-x-2 bg-white p-2.5 rounded-lg border border-slate-200 cursor-pointer font-bold hover:border-indigo-300">
+            <input type="checkbox" class="chk-data-type rounded text-indigo-600" value="histories" data-name="選考変更履歴">
+            <span>選考変更履歴 (${allPreview.histories}件)</span>
+          </label>
+          <label class="inline-flex items-center space-x-2 bg-white p-2.5 rounded-lg border border-slate-200 cursor-pointer font-bold hover:border-indigo-300">
+            <input type="checkbox" class="chk-data-type rounded text-indigo-600" value="communications" data-name="企業対応履歴">
+            <span>企業対応履歴 (${allPreview.companyCommunications}件)</span>
+          </label>
+          <label class="inline-flex items-center space-x-2 bg-white p-2.5 rounded-lg border border-slate-200 cursor-pointer font-bold hover:border-indigo-300">
+            <input type="checkbox" class="chk-data-type rounded text-indigo-600" value="qTargets" data-name="Q目標">
+            <span>個人Q目標 (${allPreview.qTargets}件)</span>
+          </label>
+        </div>
+
+        <div class="flex justify-end pt-2">
+          <button id="btn-delete-selected-data" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-lg font-bold transition">
+            選択した種別のデータを削除
+          </button>
+        </div>
+      </div>
+
+      <!-- 3. 全業務データを初期化 (指示書 5-3, 9項) -->
+      <div class="bg-rose-50/70 p-5 rounded-xl border border-rose-200 space-y-3">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h4 class="font-extrabold text-rose-950 text-sm flex items-center gap-2">
+              <svg class="w-5 h-5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+              <span>全業務データを初期化 (本番データクリア)</span>
+            </h4>
+            <p class="text-xs text-slate-700 mt-1">
+              候補者・企業・求人・選考案件・履歴などの全業務データ (${allPreview.total} 件) を削除して初期状態へ戻します。<br>
+              <strong class="text-rose-900">※管理者・コンサルタントアカウントおよびログイン設定は削除されません。</strong>
+            </p>
+          </div>
+
+          <div class="flex items-center space-x-2 shrink-0">
+            <button id="btn-seed-demo-data" class="px-3 py-2 bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 rounded-lg font-bold text-xs transition">
+              デモデータを再作成
+            </button>
+            <button id="btn-open-reset-all-modal" ${allPreview.total === 0 ? 'disabled' : ''} class="px-4 py-2 bg-rose-600 hover:bg-rose-700 disabled:opacity-40 text-white rounded-lg font-extrabold shadow-sm transition">
+              全業務データを初期化
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. 初期化履歴 (監査ログ: 指示書 17項) -->
+      <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+        <div class="px-4 py-3 bg-slate-900 text-white flex items-center justify-between">
+          <h4 class="font-bold text-xs">📜 初期化・データ操作監査履歴 (過去100件)</h4>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-50 text-slate-700 font-bold border-b border-slate-200">
+              <tr>
+                <th class="px-4 py-2.5">実行日時</th>
+                <th class="px-4 py-2.5">操作種別</th>
+                <th class="px-4 py-2.5">実行者</th>
+                <th class="px-4 py-2.5">対象件数・詳細</th>
+                <th class="px-3 py-2.5 text-center">結果</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              ${auditLogs.length === 0 ? `
+                <tr><td colspan="5" class="text-center py-6 text-slate-400">操作履歴はありません。</td></tr>
+              ` : auditLogs.map(log => {
+                const opLabelMap = {
+                  'DELETE_DEMO_DATA': 'デモデータ削除',
+                  'DELETE_SELECTED_DATA': '選択データ削除',
+                  'RESET_ALL_BUSINESS_DATA': '全業務データ初期化',
+                  'CREATE_DEMO_DATA': 'デモデータ再作成'
+                };
+                const countsText = typeof log.targetCounts === 'object' ? JSON.stringify(log.targetCounts) : String(log.targetCounts);
+                return `
+                  <tr class="hover:bg-slate-50 transition">
+                    <td class="px-4 py-2 font-mono text-slate-600">${new Date(log.executedAt).toLocaleString('ja-JP')}</td>
+                    <td class="px-4 py-2 font-bold text-indigo-900">${opLabelMap[log.operationType] || log.operationType}</td>
+                    <td class="px-4 py-2 font-semibold text-slate-800">${log.executedByName}</td>
+                    <td class="px-4 py-2 font-mono text-slate-600 truncate max-w-xs" title="${countsText}">${countsText}</td>
+                    <td class="px-3 py-2 text-center">
+                      <span class="px-2 py-0.5 rounded text-[10px] font-bold ${log.result === 'SUCCESS' ? 'bg-emerald-100 text-emerald-800 border border-emerald-300' : 'bg-rose-100 text-rose-800 border border-rose-300'}">
+                        ${log.result}
+                      </span>
+                    </td>
+                  </tr>
+                `;
+              }).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  `;
 }

@@ -148,30 +148,30 @@ const JOB_STATUSES = [
 ];
 
 const INITIAL_CONSULTANTS = [
-  { consultantId: 'c1', name: '佐藤 健太', email: 'sato@thanks-partners.com', role: 'admin', roleType: 'ADMIN', status: 'active', displayOrder: 1, isArchived: false },
-  { consultantId: 'c2', name: '田中 美咲', email: 'tanaka@thanks-partners.com', role: 'member', roleType: 'CA', status: 'active', displayOrder: 2, isArchived: false },
-  { consultantId: 'c3', name: '鈴木 拓也', email: 'suzuki@thanks-partners.com', role: 'member', roleType: 'RA', status: 'active', displayOrder: 3, isArchived: false },
-  { consultantId: 'c4', name: '高橋 優花', email: 'takahashi@thanks-partners.com', role: 'member', roleType: 'CA', status: 'active', displayOrder: 4, isArchived: false }
+  { consultantId: 'c1', name: '佐藤 健太', email: 'sato@thanks-partners.com', role: 'admin', roleType: 'ADMIN', status: 'active', displayOrder: 1, isArchived: false, isDemo: true },
+  { consultantId: 'c2', name: '田中 美咲', email: 'tanaka@thanks-partners.com', role: 'member', roleType: 'CA', status: 'active', displayOrder: 2, isArchived: false, isDemo: true },
+  { consultantId: 'c3', name: '鈴木 拓也', email: 'suzuki@thanks-partners.com', role: 'member', roleType: 'RA', status: 'active', displayOrder: 3, isArchived: false, isDemo: true },
+  { consultantId: 'c4', name: '高橋 優花', email: 'takahashi@thanks-partners.com', role: 'member', roleType: 'CA', status: 'active', displayOrder: 4, isArchived: false, isDemo: true }
 ];
 
 const INITIAL_COMPANIES = [
-  { companyId: 'comp1', name: '株式会社テクノロジーパートナーズ', rank: 'SS', primaryRaId: 'c3', primaryRaName: '鈴木 拓也', raConsultantId: 'c3', checkIntervalDays: 3, contactPerson: '山田 太郎', contactName: '山田 太郎', contactEmail: 'yamada@tech-partners.co.jp', isArchived: false },
-  { companyId: 'comp2', name: 'グローバルソリューションズ株式会社', rank: 'S', primaryRaId: 'c3', primaryRaName: '鈴木 拓也', raConsultantId: 'c3', checkIntervalDays: 7, contactPerson: '佐藤 二郎', contactName: '佐藤 二郎', contactEmail: 'sato@global-sol.co.jp', isArchived: false },
-  { companyId: 'comp3', name: 'イノベーション・システムズ', rank: 'A', primaryRaId: 'c3', primaryRaName: '鈴木 拓也', raConsultantId: 'c3', checkIntervalDays: 14, contactPerson: '高橋 三郎', contactName: '高橋 三郎', contactEmail: '', isArchived: false }
+  { companyId: 'comp1', name: '株式会社テクノロジーパートナーズ', rank: 'SS', primaryRaId: 'c3', primaryRaName: '鈴木 拓也', raConsultantId: 'c3', checkIntervalDays: 3, contactPerson: '山田 太郎', contactName: '山田 太郎', contactEmail: 'yamada@tech-partners.co.jp', isArchived: false, isDemo: true, createdBySeed: true },
+  { companyId: 'comp2', name: 'グローバルソリューションズ株式会社', rank: 'S', primaryRaId: 'c3', primaryRaName: '鈴木 拓也', raConsultantId: 'c3', checkIntervalDays: 7, contactPerson: '佐藤 二郎', contactName: '佐藤 二郎', contactEmail: 'sato@global-sol.co.jp', isArchived: false, isDemo: true, createdBySeed: true },
+  { companyId: 'comp3', name: 'イノベーション・システムズ', rank: 'A', primaryRaId: 'c3', primaryRaName: '鈴木 拓也', raConsultantId: 'c3', checkIntervalDays: 14, contactPerson: '高橋 三郎', contactName: '高橋 三郎', contactEmail: '', isArchived: false, isDemo: true, createdBySeed: true }
 ];
 
 const INITIAL_JOBS = [
-  { jobId: 'job1', companyId: 'comp1', companyName: '株式会社テクノロジーパートナーズ', title: 'シニアフロントエンドエンジニア', location: '東京都千代田区', status: '募集中', raId: 'c3', raConsultantId: 'c3', isArchived: false },
-  { jobId: 'job2', companyId: 'comp1', companyName: '株式会社テクノロジーパートナーズ', title: 'バックエンドエンジニア (Go/Python)', location: '東京都千代田区', status: '募集中', raId: 'c3', raConsultantId: 'c3', isArchived: false },
-  { jobId: 'job3', companyId: 'comp2', companyName: 'グローバルソリューションズ株式会社', title: 'ITコンサルタント', location: '東京都港区', status: '募集中', raId: 'c3', raConsultantId: 'c3', isArchived: false },
-  { jobId: 'job4', companyId: 'comp3', companyName: 'イノベーション・システムズ', title: 'インフラエンジニア (AWS/K8s)', location: 'リモート可', status: '募集中', raId: 'c3', raConsultantId: 'c3', isArchived: false }
+  { jobId: 'job1', companyId: 'comp1', companyName: '株式会社テクノロジーパートナーズ', title: 'シニアフロントエンドエンジニア', location: '東京都千代田区', status: '募集中', raId: 'c3', raConsultantId: 'c3', isArchived: false, isDemo: true, createdBySeed: true },
+  { jobId: 'job2', companyId: 'comp1', companyName: '株式会社テクノロジーパートナーズ', title: 'バックエンドエンジニア (Go/Python)', location: '東京都千代田区', status: '募集中', raId: 'c3', raConsultantId: 'c3', isArchived: false, isDemo: true, createdBySeed: true },
+  { jobId: 'job3', companyId: 'comp2', companyName: 'グローバルソリューションズ株式会社', title: 'ITコンサルタント', location: '東京都港区', status: '募集中', raId: 'c3', raConsultantId: 'c3', isArchived: false, isDemo: true, createdBySeed: true },
+  { jobId: 'job4', companyId: 'comp3', companyName: 'イノベーション・システムズ', title: 'インフラエンジニア (AWS/K8s)', location: 'リモート可', status: '募集中', raId: 'c3', raConsultantId: 'c3', isArchived: false, isDemo: true, createdBySeed: true }
 ];
 
 const INITIAL_CANDIDATES = [
-  { candidateId: 'cand1', name: '山田 太郎', kana: 'ヤマダ タロウ', caId: 'c2', caConsultantId: 'c2', caName: '田中 美咲', activityStatus: '選考中', entrySource: 'BIZREACH', entrySourceDetail: '', internalManagementNumber: 'CD-2026-001', isArchived: false },
-  { candidateId: 'cand2', name: '佐藤 花子', kana: 'サトウ ハナコ', caId: 'c2', caConsultantId: 'c2', caName: '田中 美咲', activityStatus: '選考中', entrySource: 'PASS_UP', entrySourceDetail: '若山さんスカウト', internalManagementNumber: 'CD-2026-002', isArchived: false },
-  { candidateId: 'cand3', name: '鈴木 一郎', kana: 'スズキ イチロウ', caId: 'c4', caConsultantId: 'c4', caName: '高橋 優花', activityStatus: '選考中', entrySource: 'AMBI', entrySourceDetail: '', internalManagementNumber: 'CD-2026-003', isArchived: false },
-  { candidateId: 'cand4', name: '高橋 健二', kana: 'タカハシ ケンジ', caId: 'c4', caConsultantId: 'c4', caName: '高橋 優花', activityStatus: '選考中', entrySource: 'RDS', entrySourceDetail: '', internalManagementNumber: 'CD-2026-004', isArchived: false }
+  { candidateId: 'cand1', name: '山田 太郎', kana: 'ヤマダ タロウ', caId: 'c2', caConsultantId: 'c2', caName: '田中 美咲', activityStatus: '選考中', entrySource: 'BIZREACH', entrySourceDetail: '', internalManagementNumber: 'CD-2026-001', isArchived: false, isDemo: true, createdBySeed: true },
+  { candidateId: 'cand2', name: '佐藤 花子', kana: 'サトウ ハナコ', caId: 'c2', caConsultantId: 'c2', caName: '田中 美咲', activityStatus: '選考中', entrySource: 'PASS_UP', entrySourceDetail: '若山さんスカウト', internalManagementNumber: 'CD-2026-002', isArchived: false, isDemo: true, createdBySeed: true },
+  { candidateId: 'cand3', name: '鈴木 一郎', kana: 'スズキ イチロウ', caId: 'c4', caConsultantId: 'c4', caName: '高橋 優花', activityStatus: '選考中', entrySource: 'AMBI', entrySourceDetail: '', internalManagementNumber: 'CD-2026-003', isArchived: false, isDemo: true, createdBySeed: true },
+  { candidateId: 'cand4', name: '高橋 健二', kana: 'タカハシ ケンジ', caId: 'c4', caConsultantId: 'c4', caName: '高橋 優花', activityStatus: '選考中', entrySource: 'RDS', entrySourceDetail: '', internalManagementNumber: 'CD-2026-004', isArchived: false, isDemo: true, createdBySeed: true }
 ];
 
 const INITIAL_SELECTIONS = [
@@ -207,7 +207,9 @@ const INITIAL_SELECTIONS = [
     companyActionStatus: '未対応',
     internalMemo: '志望度高く、他社選考なし。',
     companySharedComment: '候補者様も結果を楽しみにしております。',
-    isArchived: false
+    isArchived: false,
+    isDemo: true,
+    createdBySeed: true
   },
   {
     selectionId: 'sel2',
@@ -241,19 +243,21 @@ const INITIAL_SELECTIONS = [
     companyActionStatus: '回答待ち',
     internalMemo: '競合A社と最終面接重複あり。',
     companySharedComment: '面接設定ありがとうございます。',
-    isArchived: false
+    isArchived: false,
+    isDemo: true,
+    createdBySeed: true
   }
 ];
 
 const INITIAL_TARGETS = [];
 const INITIAL_Q_TARGETS = [
-  { id: 'qt_c2_2025_Q4', consultantId: 'c2', fiscalYear: 2025, quarter: 'Q4', targetCount: 6 },
-  { id: 'qt_c4_2025_Q4', consultantId: 'c4', fiscalYear: 2025, quarter: 'Q4', targetCount: 5 }
+  { id: 'qt_c2_2025_Q4', consultantId: 'c2', fiscalYear: 2025, quarter: 'Q4', targetCount: 6, isDemo: true, createdBySeed: true },
+  { id: 'qt_c4_2025_Q4', consultantId: 'c4', fiscalYear: 2025, quarter: 'Q4', targetCount: 5, isDemo: true, createdBySeed: true }
 ];
 
 const INITIAL_HISTORIES = [];
 const INITIAL_EMAIL_TEMPLATES = [
-  { templateId: 't1', name: '標準・結果待ち催促', subject: '【選考進捗のご確認】貴社選考中候補者様の状況につきまして（サンクスパートナーズ）', body: 'いつも大変お世話になっております。' }
+  { templateId: 't1', name: '標準・結果待ち催促', subject: '【選考進捗のご確認】貴社選考中候補者様の状況につきまして（サンクスパートナーズ）', body: 'いつも大変お世話になっております。', isDemo: true, createdBySeed: true }
 ];
 
 const INITIAL_COMPANY_COMMUNICATIONS = [];
@@ -304,9 +308,10 @@ const STORAGE_KEYS = {
   COMPANY_COMMUNICATIONS: 'selection_app_company_communications',
   COMPANY_SUBMISSIONS: 'selection_app_company_submissions',
   COMPANY_SUBMISSION_TEMPLATES: 'selection_app_company_submission_templates',
-  MASTER_AUDIT_LOGS: 'selection_app_master_audit_logs', // 監査ログ (指示書 14項)
+  MASTER_AUDIT_LOGS: 'selection_app_master_audit_logs',
   CURRENT_CONSULTANT: 'selection_app_current_consultant',
-  SIMULATED_ROLE: 'selection_app_simulated_role'
+  SIMULATED_ROLE: 'selection_app_simulated_role',
+  IS_INITIALIZED: 'selection_app_initialized' // デモデータ自動再生成停止フラグ (指示書 3, 14項)
 };
 
 class Store {
@@ -316,38 +321,63 @@ class Store {
   }
 
   initData() {
+    const isInitialized = localStorage.getItem(STORAGE_KEYS.IS_INITIALIZED) === 'true';
+
     if (!localStorage.getItem(STORAGE_KEYS.CONSULTANTS)) {
       localStorage.setItem(STORAGE_KEYS.CONSULTANTS, JSON.stringify(INITIAL_CONSULTANTS));
     }
-    if (!localStorage.getItem(STORAGE_KEYS.COMPANIES)) {
-      localStorage.setItem(STORAGE_KEYS.COMPANIES, JSON.stringify(INITIAL_COMPANIES));
+
+    // 初回起動時（初期化フラグがまだ未セットの場合）のみ初期デモデータを投入
+    if (!isInitialized) {
+      if (!localStorage.getItem(STORAGE_KEYS.COMPANIES)) {
+        localStorage.setItem(STORAGE_KEYS.COMPANIES, JSON.stringify(INITIAL_COMPANIES));
+      }
+      if (!localStorage.getItem(STORAGE_KEYS.JOBS)) {
+        localStorage.setItem(STORAGE_KEYS.JOBS, JSON.stringify(INITIAL_JOBS));
+      }
+      if (!localStorage.getItem(STORAGE_KEYS.CANDIDATES)) {
+        localStorage.setItem(STORAGE_KEYS.CANDIDATES, JSON.stringify(INITIAL_CANDIDATES));
+      }
+      if (!localStorage.getItem(STORAGE_KEYS.SELECTIONS)) {
+        localStorage.setItem(STORAGE_KEYS.SELECTIONS, JSON.stringify(INITIAL_SELECTIONS));
+      }
+      if (!localStorage.getItem(STORAGE_KEYS.TARGETS)) {
+        localStorage.setItem(STORAGE_KEYS.TARGETS, JSON.stringify(INITIAL_TARGETS));
+      }
+      if (!localStorage.getItem(STORAGE_KEYS.Q_TARGETS)) {
+        localStorage.setItem(STORAGE_KEYS.Q_TARGETS, JSON.stringify(INITIAL_Q_TARGETS));
+      }
+      if (!localStorage.getItem(STORAGE_KEYS.HISTORIES)) {
+        localStorage.setItem(STORAGE_KEYS.HISTORIES, JSON.stringify(INITIAL_HISTORIES));
+      }
+      if (!localStorage.getItem(STORAGE_KEYS.EMAIL_TEMPLATES)) {
+        localStorage.setItem(STORAGE_KEYS.EMAIL_TEMPLATES, JSON.stringify(INITIAL_EMAIL_TEMPLATES));
+      }
+      if (!localStorage.getItem(STORAGE_KEYS.COMPANY_COMMUNICATIONS)) {
+        localStorage.setItem(STORAGE_KEYS.COMPANY_COMMUNICATIONS, JSON.stringify(INITIAL_COMPANY_COMMUNICATIONS));
+      }
+      localStorage.setItem(STORAGE_KEYS.IS_INITIALIZED, 'true');
+    } else {
+      // 初期化済みだが各キーが存在しない場合は空配列で初期化
+      [
+        STORAGE_KEYS.COMPANIES,
+        STORAGE_KEYS.JOBS,
+        STORAGE_KEYS.CANDIDATES,
+        STORAGE_KEYS.SELECTIONS,
+        STORAGE_KEYS.TARGETS,
+        STORAGE_KEYS.Q_TARGETS,
+        STORAGE_KEYS.HISTORIES,
+        STORAGE_KEYS.EMAIL_TEMPLATES,
+        STORAGE_KEYS.COMPANY_COMMUNICATIONS
+      ].forEach(key => {
+        if (!localStorage.getItem(key)) {
+          localStorage.setItem(key, JSON.stringify([]));
+        }
+      });
     }
-    if (!localStorage.getItem(STORAGE_KEYS.JOBS)) {
-      localStorage.setItem(STORAGE_KEYS.JOBS, JSON.stringify(INITIAL_JOBS));
-    }
-    if (!localStorage.getItem(STORAGE_KEYS.CANDIDATES)) {
-      localStorage.setItem(STORAGE_KEYS.CANDIDATES, JSON.stringify(INITIAL_CANDIDATES));
-    }
-    if (!localStorage.getItem(STORAGE_KEYS.SELECTIONS)) {
-      localStorage.setItem(STORAGE_KEYS.SELECTIONS, JSON.stringify(INITIAL_SELECTIONS));
-    }
-    if (!localStorage.getItem(STORAGE_KEYS.TARGETS)) {
-      localStorage.setItem(STORAGE_KEYS.TARGETS, JSON.stringify(INITIAL_TARGETS));
-    }
-    if (!localStorage.getItem(STORAGE_KEYS.Q_TARGETS)) {
-      localStorage.setItem(STORAGE_KEYS.Q_TARGETS, JSON.stringify(INITIAL_Q_TARGETS));
-    }
+
     if (!localStorage.getItem(STORAGE_KEYS.Q_TARGET_HISTORIES)) {
       localStorage.setItem(STORAGE_KEYS.Q_TARGET_HISTORIES, JSON.stringify([]));
-    }
-    if (!localStorage.getItem(STORAGE_KEYS.HISTORIES)) {
-      localStorage.setItem(STORAGE_KEYS.HISTORIES, JSON.stringify(INITIAL_HISTORIES));
-    }
-    if (!localStorage.getItem(STORAGE_KEYS.EMAIL_TEMPLATES)) {
-      localStorage.setItem(STORAGE_KEYS.EMAIL_TEMPLATES, JSON.stringify(INITIAL_EMAIL_TEMPLATES));
-    }
-    if (!localStorage.getItem(STORAGE_KEYS.COMPANY_COMMUNICATIONS)) {
-      localStorage.setItem(STORAGE_KEYS.COMPANY_COMMUNICATIONS, JSON.stringify(INITIAL_COMPANY_COMMUNICATIONS));
     }
     if (!localStorage.getItem(STORAGE_KEYS.COMPANY_SUBMISSIONS)) {
       localStorage.setItem(STORAGE_KEYS.COMPANY_SUBMISSIONS, JSON.stringify([]));
@@ -380,6 +410,16 @@ class Store {
         c.roleType = c.role === 'admin' ? 'ADMIN' : (c.name.includes('鈴木') ? 'RA' : 'CA');
         consUpdated = true;
       }
+      if (!c.roles || !Array.isArray(c.roles) || c.roles.length === 0) {
+        if (c.roleType === 'ADMIN') {
+          c.roles = ['ADMIN', 'CA', 'RA'];
+        } else if (c.roleType === 'RA') {
+          c.roles = ['RA'];
+        } else {
+          c.roles = ['CA'];
+        }
+        consUpdated = true;
+      }
       if (c.status === undefined) {
         c.status = 'active';
         consUpdated = true;
@@ -391,6 +431,11 @@ class Store {
     });
     if (consUpdated) this.setItem(STORAGE_KEYS.CONSULTANTS, consultants);
 
+    const demoCompanyIds = new Set(['comp1', 'comp2', 'comp3']);
+    const demoJobIds = new Set(['job1', 'job2', 'job3', 'job4']);
+    const demoCandIds = new Set(['cand1', 'cand2', 'cand3', 'cand4']);
+    const demoSelIds = new Set(['sel1', 'sel2']);
+
     let compUpdated = false;
     const mapRank = (r) => {
       if (r === '最重要' || r === 'SS') return 'SS';
@@ -401,6 +446,11 @@ class Store {
     };
 
     companies.forEach(c => {
+      if (c.isDemo === undefined && (demoCompanyIds.has(c.companyId) || c.createdBySeed)) {
+        c.isDemo = true;
+        c.createdBySeed = true;
+        compUpdated = true;
+      }
       const newRank = mapRank(c.rank);
       if (c.rank !== newRank) {
         c.rank = newRank;
@@ -428,6 +478,11 @@ class Store {
 
     let jobsUpdated = false;
     jobs.forEach(j => {
+      if (j.isDemo === undefined && (demoJobIds.has(j.jobId) || j.createdBySeed)) {
+        j.isDemo = true;
+        j.createdBySeed = true;
+        jobsUpdated = true;
+      }
       if (!j.raId) {
         j.raId = j.raConsultantId || 'c3';
         jobsUpdated = true;
@@ -445,19 +500,27 @@ class Store {
 
     let candUpdated = false;
     candidates.forEach(c => {
+      if (c.isDemo === undefined && (demoCandIds.has(c.candidateId) || c.createdBySeed)) {
+        c.isDemo = true;
+        c.createdBySeed = true;
+        candUpdated = true;
+      }
       if (c.isArchived === undefined) {
         c.isArchived = false;
         candUpdated = true;
       }
     });
-    if (candUpdated) this.setItem(STORAGE_KEYS.CANDIDATES, candidates);
-
     let selUpdated = false;
     const companiesMap = new Map(companies.map(c => [c.companyId, c]));
     const candidatesMap = new Map(candidates.map(c => [c.candidateId, c]));
     const jobsMap = new Map(jobs.map(j => [j.jobId, j]));
 
     selections.forEach(s => {
+      if (s.isDemo === undefined && (demoSelIds.has(s.selectionId) || s.createdBySeed)) {
+        s.isDemo = true;
+        s.createdBySeed = true;
+        selUpdated = true;
+      }
       const cand = candidatesMap.get(s.candidateId);
       const comp = companiesMap.get(s.companyId);
       const job = jobsMap.get(s.jobId);
@@ -570,14 +633,46 @@ class Store {
   }
 
   checkConsultantEmailDuplicate(email, excludeConsultantId = null) {
-    if (!email) return false;
+    const info = this.checkConsultantEmailDuplicateInfo(email, excludeConsultantId);
+    return info.isDuplicate;
+  }
+
+  checkConsultantEmailDuplicateInfo(email, excludeConsultantId = null, inputName = '') {
+    if (!email) return { isDuplicate: false, existingConsultant: null, isSameName: false };
     const normalized = email.trim().toLowerCase();
     const list = this.getItem(STORAGE_KEYS.CONSULTANTS);
 
-    return list.some(c => {
+    const existing = list.find(c => {
       if (excludeConsultantId && c.consultantId === excludeConsultantId) return false;
       return (c.email || '').trim().toLowerCase() === normalized;
     });
+
+    if (!existing) {
+      return { isDuplicate: false, existingConsultant: null, isSameName: false };
+    }
+
+    const trimmedInputName = inputName.trim().replace(/\s+/g, '');
+    const trimmedExistingName = (existing.name || '').trim().replace(/\s+/g, '');
+    const isSameName = !trimmedInputName || trimmedInputName === trimmedExistingName;
+
+    return {
+      isDuplicate: true,
+      existingConsultant: existing,
+      isSameName
+    };
+  }
+
+  checkConsultantRoleInUse(consultantId, roleTypeToRemove) {
+    if (!consultantId || !roleTypeToRemove) return 0;
+    const selections = this.getItem(STORAGE_KEYS.SELECTIONS).filter(s => !s.isArchived);
+
+    if (roleTypeToRemove === 'CA') {
+      return selections.filter(s => s.caId === consultantId || s.caConsultantId === consultantId).length;
+    }
+    if (roleTypeToRemove === 'RA') {
+      return selections.filter(s => s.raId === consultantId || s.raConsultantId === consultantId).length;
+    }
+    return 0;
   }
 
   // --- Q目標管理メソッド (重要機能の完全復元) ---
@@ -970,11 +1065,23 @@ class Store {
   }
 
   getCaConsultants() {
-    return this.getConsultants().filter(c => c.roleType === 'CA' || c.roleType === 'ADMIN');
+    return this.getConsultants().filter(c => {
+      if (c.status === 'inactive') return false;
+      if (c.roles && Array.isArray(c.roles)) {
+        return c.roles.includes('CA') || c.roles.includes('ADMIN');
+      }
+      return c.roleType === 'CA' || c.roleType === 'ADMIN';
+    });
   }
 
   getRaConsultants() {
-    return this.getConsultants().filter(c => c.roleType === 'RA' || c.roleType === 'ADMIN');
+    return this.getConsultants().filter(c => {
+      if (c.status === 'inactive') return false;
+      if (c.roles && Array.isArray(c.roles)) {
+        return c.roles.includes('RA') || c.roles.includes('ADMIN');
+      }
+      return c.roleType === 'RA' || c.roleType === 'ADMIN';
+    });
   }
 
   getCompanies(includeArchived = false) {
@@ -1433,6 +1540,212 @@ class Store {
     }
     this.setItem(STORAGE_KEYS.TARGETS, targets);
   }
+
+  // --- データ管理 ＆ 初期化 ＆ 監査ログ機能 (指示書 4〜22項) ---
+
+  recordAuditLog(operationType, targetCounts = {}, result = 'SUCCESS', errorMessage = '') {
+    const logs = this.getItem(STORAGE_KEYS.MASTER_AUDIT_LOGS);
+    const current = this.getCurrentConsultant();
+    const log = {
+      id: 'audit_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
+      operationType,
+      targetCounts,
+      executedBy: current.consultantId || 'unknown',
+      executedByName: current.name || '不明',
+      executedAt: new Date().toISOString(),
+      result,
+      errorMessage
+    };
+    logs.unshift(log);
+    this.setItem(STORAGE_KEYS.MASTER_AUDIT_LOGS, logs.slice(0, 100)); // 最新100件保存
+    return log;
+  }
+
+  getAuditLogs() {
+    return this.getItem(STORAGE_KEYS.MASTER_AUDIT_LOGS);
+  }
+
+  getDeletionPreviewCounts() {
+    const candidates = this.getItem(STORAGE_KEYS.CANDIDATES);
+    const companies = this.getItem(STORAGE_KEYS.COMPANIES);
+    const jobs = this.getItem(STORAGE_KEYS.JOBS);
+    const selections = this.getItem(STORAGE_KEYS.SELECTIONS);
+    const histories = this.getItem(STORAGE_KEYS.HISTORIES);
+    const companyCommunications = this.getItem(STORAGE_KEYS.COMPANY_COMMUNICATIONS);
+    const companySubmissions = this.getItem(STORAGE_KEYS.COMPANY_SUBMISSIONS);
+    const qTargets = this.getItem(STORAGE_KEYS.Q_TARGETS);
+    const emailTemplates = this.getItem(STORAGE_KEYS.EMAIL_TEMPLATES);
+
+    const isDemoItem = item => Boolean(item.isDemo || item.createdBySeed);
+
+    return {
+      demo: {
+        candidates: candidates.filter(isDemoItem).length,
+        companies: companies.filter(isDemoItem).length,
+        jobs: jobs.filter(isDemoItem).length,
+        selections: selections.filter(isDemoItem).length,
+        histories: histories.filter(isDemoItem).length,
+        companyCommunications: companyCommunications.filter(isDemoItem).length,
+        companySubmissions: companySubmissions.filter(isDemoItem).length,
+        qTargets: qTargets.filter(isDemoItem).length,
+        emailTemplates: emailTemplates.filter(isDemoItem).length,
+        total: candidates.filter(isDemoItem).length +
+               companies.filter(isDemoItem).length +
+               jobs.filter(isDemoItem).length +
+               selections.filter(isDemoItem).length +
+               histories.filter(isDemoItem).length +
+               companyCommunications.filter(isDemoItem).length +
+               qTargets.filter(isDemoItem).length
+      },
+      all: {
+        candidates: candidates.length,
+        companies: companies.length,
+        jobs: jobs.length,
+        selections: selections.length,
+        histories: histories.length,
+        companyCommunications: companyCommunications.length,
+        companySubmissions: companySubmissions.length,
+        qTargets: qTargets.length,
+        emailTemplates: emailTemplates.length,
+        total: candidates.length + companies.length + jobs.length + selections.length + histories.length + companyCommunications.length + qTargets.length
+      }
+    };
+  }
+
+  deleteDemoData() {
+    if (!this.isAdmin()) throw new Error('管理者権限が必要です。');
+
+    const isDemoItem = item => Boolean(item.isDemo || item.createdBySeed);
+
+    const demoSelections = this.getItem(STORAGE_KEYS.SELECTIONS).filter(isDemoItem);
+    const demoSelectionIds = new Set(demoSelections.map(s => s.selectionId));
+
+    // 削除対象カウント
+    const previewCounts = this.getDeletionPreviewCounts().demo;
+
+    // 1. 子データから削除
+    const histories = this.getItem(STORAGE_KEYS.HISTORIES).filter(h => !isDemoItem(h) && !demoSelectionIds.has(h.selectionId));
+    const comms = this.getItem(STORAGE_KEYS.COMPANY_COMMUNICATIONS).filter(c => !isDemoItem(c) && !demoSelectionIds.has(c.selectionId));
+    const subs = this.getItem(STORAGE_KEYS.COMPANY_SUBMISSIONS).filter(s => !isDemoItem(s) && !demoSelectionIds.has(s.selectionId));
+    const selections = this.getItem(STORAGE_KEYS.SELECTIONS).filter(s => !isDemoItem(s));
+    const candidates = this.getItem(STORAGE_KEYS.CANDIDATES).filter(c => !isDemoItem(c));
+    const jobs = this.getItem(STORAGE_KEYS.JOBS).filter(j => !isDemoItem(j));
+    const companies = this.getItem(STORAGE_KEYS.COMPANIES).filter(c => !isDemoItem(c));
+    const qTargets = this.getItem(STORAGE_KEYS.Q_TARGETS).filter(q => !isDemoItem(q));
+
+    this.setItem(STORAGE_KEYS.HISTORIES, histories);
+    this.setItem(STORAGE_KEYS.COMPANY_COMMUNICATIONS, comms);
+    this.setItem(STORAGE_KEYS.COMPANY_SUBMISSIONS, subs);
+    this.setItem(STORAGE_KEYS.SELECTIONS, selections);
+    this.setItem(STORAGE_KEYS.CANDIDATES, candidates);
+    this.setItem(STORAGE_KEYS.JOBS, jobs);
+    this.setItem(STORAGE_KEYS.COMPANIES, companies);
+    this.setItem(STORAGE_KEYS.Q_TARGETS, qTargets);
+
+    this.setItem(STORAGE_KEYS.IS_INITIALIZED, 'true');
+
+    this.recordAuditLog('DELETE_DEMO_DATA', previewCounts);
+    this.notifyListeners();
+
+    return previewCounts;
+  }
+
+  deleteSelectedDataTypes(selectedTypes = []) {
+    if (!this.isAdmin()) throw new Error('管理者権限が必要です。');
+
+    const typesSet = new Set(selectedTypes);
+    const deletedCounts = {};
+
+    if (typesSet.has('histories') || typesSet.has('selections')) {
+      deletedCounts.histories = this.getItem(STORAGE_KEYS.HISTORIES).length;
+      this.setItem(STORAGE_KEYS.HISTORIES, []);
+    }
+    if (typesSet.has('communications') || typesSet.has('selections')) {
+      deletedCounts.companyCommunications = this.getItem(STORAGE_KEYS.COMPANY_COMMUNICATIONS).length;
+      this.setItem(STORAGE_KEYS.COMPANY_COMMUNICATIONS, []);
+    }
+    if (typesSet.has('submissions') || typesSet.has('selections')) {
+      deletedCounts.companySubmissions = this.getItem(STORAGE_KEYS.COMPANY_SUBMISSIONS).length;
+      this.setItem(STORAGE_KEYS.COMPANY_SUBMISSIONS, []);
+    }
+    if (typesSet.has('selections')) {
+      deletedCounts.selections = this.getItem(STORAGE_KEYS.SELECTIONS).length;
+      this.setItem(STORAGE_KEYS.SELECTIONS, []);
+    }
+    if (typesSet.has('candidates')) {
+      deletedCounts.candidates = this.getItem(STORAGE_KEYS.CANDIDATES).length;
+      this.setItem(STORAGE_KEYS.CANDIDATES, []);
+    }
+    if (typesSet.has('jobs')) {
+      deletedCounts.jobs = this.getItem(STORAGE_KEYS.JOBS).length;
+      this.setItem(STORAGE_KEYS.JOBS, []);
+    }
+    if (typesSet.has('companies')) {
+      deletedCounts.companies = this.getItem(STORAGE_KEYS.COMPANIES).length;
+      this.setItem(STORAGE_KEYS.COMPANIES, []);
+    }
+    if (typesSet.has('qTargets')) {
+      deletedCounts.qTargets = this.getItem(STORAGE_KEYS.Q_TARGETS).length;
+      this.setItem(STORAGE_KEYS.Q_TARGETS, []);
+    }
+
+    this.setItem(STORAGE_KEYS.IS_INITIALIZED, 'true');
+
+    this.recordAuditLog('DELETE_SELECTED_DATA', { selectedTypes, ...deletedCounts });
+    this.notifyListeners();
+
+    return deletedCounts;
+  }
+
+  resetAllBusinessData() {
+    if (!this.isAdmin()) throw new Error('管理者権限が必要です。');
+
+    const previewCounts = this.getDeletionPreviewCounts().all;
+
+    // 業務データを全て空配列にセット（コンサルタント・認証・システム設定は保護）
+    this.setItem(STORAGE_KEYS.SELECTIONS, []);
+    this.setItem(STORAGE_KEYS.CANDIDATES, []);
+    this.setItem(STORAGE_KEYS.JOBS, []);
+    this.setItem(STORAGE_KEYS.COMPANIES, []);
+    this.setItem(STORAGE_KEYS.HISTORIES, []);
+    this.setItem(STORAGE_KEYS.COMPANY_COMMUNICATIONS, []);
+    this.setItem(STORAGE_KEYS.COMPANY_SUBMISSIONS, []);
+    this.setItem(STORAGE_KEYS.TARGETS, []);
+    this.setItem(STORAGE_KEYS.Q_TARGETS, []);
+    this.setItem(STORAGE_KEYS.Q_TARGET_HISTORIES, []);
+
+    // デモ再自動生成を停止する初期化フラグを確実に立てる
+    this.setItem(STORAGE_KEYS.IS_INITIALIZED, 'true');
+
+    this.recordAuditLog('RESET_ALL_BUSINESS_DATA', previewCounts);
+    this.notifyListeners();
+
+    return previewCounts;
+  }
+
+  seedDemoData() {
+    if (!this.isAdmin()) throw new Error('管理者権限が必要です。');
+
+    this.setItem(STORAGE_KEYS.COMPANIES, INITIAL_COMPANIES);
+    this.setItem(STORAGE_KEYS.JOBS, INITIAL_JOBS);
+    this.setItem(STORAGE_KEYS.CANDIDATES, INITIAL_CANDIDATES);
+    this.setItem(STORAGE_KEYS.SELECTIONS, INITIAL_SELECTIONS);
+    this.setItem(STORAGE_KEYS.Q_TARGETS, INITIAL_Q_TARGETS);
+    this.setItem(STORAGE_KEYS.EMAIL_TEMPLATES, INITIAL_EMAIL_TEMPLATES);
+    this.setItem(STORAGE_KEYS.IS_INITIALIZED, 'true');
+
+    const counts = {
+      candidates: INITIAL_CANDIDATES.length,
+      companies: INITIAL_COMPANIES.length,
+      jobs: INITIAL_JOBS.length,
+      selections: INITIAL_SELECTIONS.length
+    };
+
+    this.recordAuditLog('CREATE_DEMO_DATA', counts);
+    this.notifyListeners();
+
+    return counts;
+  }
 }
 
 const store = new Store();
@@ -1471,6 +1784,53 @@ function getFiscalQuarter(dateInput = new Date()) {
   if (month >= 1 && month <= 3) return 'Q2';
   if (month >= 4 && month <= 6) return 'Q3';
   return 'Q4';
+}
+
+/**
+ * 当日・指定日付から年度・Q・対象期間情報をまとめて取得する共通関数 (指示書 3, 5項)
+ */
+function getFiscalQuarterFromDate(dateInput = new Date()) {
+  const d = dateInput instanceof Date ? dateInput : new Date(dateInput);
+  const validDate = isNaN(d.getTime()) ? new Date() : d;
+
+  const fiscalYear = getFiscalYear(validDate);
+  const quarter = getFiscalQuarter(validDate);
+  const quarterNum = parseInt(quarter.replace('Q', ''), 10);
+  const rangeInfo = getQuarterDateRange(fiscalYear, quarter);
+
+  return {
+    fiscalYear,
+    quarter,
+    quarterNum,
+    startDate: rangeInfo.startDate,
+    endDate: rangeInfo.endDate,
+    label: rangeInfo.label,
+    months: rangeInfo.months
+  };
+}
+
+/**
+ * ヨミの保存形式の揺れを 0〜1 の小数へ正規化する共通関数 (指示書 9項)
+ * 例: 75 -> 0.75, "75%" -> 0.75, "75" -> 0.75, 0.75 -> 0.75, 不正値 -> 0
+ */
+function normalizeYomi(value) {
+  if (value === null || value === undefined || value === '') return 0;
+
+  if (typeof value === 'string') {
+    let cleaned = value.trim().replace(/%/g, '');
+    let num = parseFloat(cleaned);
+    if (isNaN(num)) return 0;
+    if (num > 1) return Math.min(1, Math.max(0, num / 100));
+    return Math.min(1, Math.max(0, num));
+  }
+
+  if (typeof value === 'number') {
+    if (isNaN(value)) return 0;
+    if (value > 1) return Math.min(1, Math.max(0, value / 100));
+    return Math.min(1, Math.max(0, value));
+  }
+
+  return 0;
 }
 
 /**
@@ -1540,6 +1900,56 @@ function getQuarterFromYearMonth(yearMonthStr) {
     quarter,
     label: `${fiscalYear}年度 ${qNum}Q`
   };
+}
+
+/**
+ * 選考案件が対象Qに含まれるかを判定する（優先順位に基づくロジック: 指示書 14項）
+ */
+function isSelectionInQuarter(selection, targetFiscalYear, targetQuarter) {
+  if (!selection) return false;
+  const fy = parseInt(targetFiscalYear, 10);
+
+  // 1. 完了見込み月 (YYYY-MM)
+  if (selection.expectedCompletionMonth) {
+    const qInfo = getQuarterFromYearMonth(selection.expectedCompletionMonth);
+    if (qInfo) {
+      if (targetQuarter === 'ALL') return qInfo.fiscalYear === fy;
+      return qInfo.fiscalYear === fy && qInfo.quarter === targetQuarter;
+    }
+  }
+
+  // 2. 着地見込みQ (オブジェクトまたは文字列)
+  if (selection.targetQuarter) {
+    if (typeof selection.targetQuarter === 'object') {
+      const qFY = parseInt(selection.targetQuarter.fiscalYear, 10);
+      const qQ = selection.targetQuarter.quarter;
+      if (targetQuarter === 'ALL') return qFY === fy;
+      return qFY === fy && qQ === targetQuarter;
+    }
+    if (typeof selection.targetQuarter === 'string') {
+      const match = selection.targetQuarter.match(/(\d{4}).*?(Q[1-4])/i);
+      if (match) {
+        const qFY = parseInt(match[1], 10);
+        const qQ = match[2].toUpperCase();
+        if (targetQuarter === 'ALL') return qFY === fy;
+        return qFY === fy && qQ === targetQuarter;
+      }
+    }
+  }
+
+  // 3. 内定承諾予定月 / 入社予定日
+  const targetDateStr = selection.expectedOfferMonth || selection.plannedJoinDate || selection.nextScheduleDate || selection.recommendationDate;
+  if (targetDateStr) {
+    const d = new Date(targetDateStr);
+    if (!isNaN(d.getTime())) {
+      const fYear = getFiscalYear(d);
+      const fQ = getFiscalQuarter(d);
+      if (targetQuarter === 'ALL') return fYear === fy;
+      return fYear === fy && fQ === targetQuarter;
+    }
+  }
+
+  return false;
 }
 
 /**
@@ -2906,14 +3316,10 @@ function renderSidebar(container, activeView, onSelectView) {
 }
 
 
-/**
- * 選考進捗・ヨミ管理システム - 全体ダッシュボードコンポーネント (CA限定チームQ目標集計 & 所属チーム非表示)
- */
 
 
 
-
-const DASHBOARD_STORAGE_KEY = 'dashboard_active_quarter';
+const DASHBOARD_STORAGE_KEY = 'dashboard_active_quarter_v2';
 
 function getSavedDashboardState() {
   try {
@@ -2934,19 +3340,24 @@ function saveDashboardState(state) {
 function renderDashboard(container, { onNavigateToSelections, onNavigateToConsultant, onNavigateToCompany }) {
   const savedState = getSavedDashboardState();
 
-  const defaultFiscalYear = getFiscalYear(new Date());
-  const defaultQuarter = getFiscalQuarter(new Date());
+  const currentInitialFQ = getFiscalQuarterFromDate(new Date());
 
-  let selectedFiscalYear = savedState.fiscalYear !== undefined ? parseInt(savedState.fiscalYear, 10) : defaultFiscalYear;
-  let selectedQuarter = savedState.quarter !== undefined ? savedState.quarter : defaultQuarter; // 'Q1', 'Q2', 'Q3', 'Q4', 'ALL'
+  let selectedFiscalYear = savedState.fiscalYear !== undefined ? parseInt(savedState.fiscalYear, 10) : currentInitialFQ.fiscalYear;
+  let selectedQuarter = savedState.quarter !== undefined ? savedState.quarter : currentInitialFQ.quarter;
+  
+  // 初期表示は必ず「チーム全体」とする (指示書 3, 8, 10項)
+  let selectedConsultantId = savedState.consultantId !== undefined ? savedState.consultantId : 'ALL';
+  let activeRoleType = savedState.roleType !== undefined ? savedState.roleType : 'CA'; // 'CA' | 'RA'
 
   function updateView() {
     const selections = store.getSelections();
     const consultants = store.getConsultants();
     const companies = store.getCompanies();
+    const jobs = store.getJobs();
 
     const consultantsMap = new Map(consultants.map(c => [c.consultantId, c]));
     const companiesMap = new Map(companies.map(c => [c.companyId, c]));
+    const jobsMap = new Map(jobs.map(j => [j.jobId, j]));
 
     const qRange = getQuarterDateRange(selectedFiscalYear, selectedQuarter);
     const startDate = new Date(qRange.startDate);
@@ -2956,105 +3367,82 @@ function renderDashboard(container, { onNavigateToSelections, onNavigateToConsul
     const qTargets = store.getQTargets(selectedFiscalYear, selectedQuarter);
     const qTargetMap = new Map(qTargets.map(t => [t.consultantId, Number(t.targetCount || 0)]));
 
-    // チームQ目標は CA の個人Q目標だけを合計 (指示書 6-3項)
-    const activeCaConsultants = consultants.filter(c => !c.isArchived && (c.roleType === 'CA' || c.role === 'member' && !c.roleType));
+    // 有効な CA・兼任コンサルタントを抽出 (指示書 5項)
+    const activeCaConsultants = consultants.filter(c => {
+      if (c.isArchived || c.status === 'inactive') return false;
+      if (c.roles && Array.isArray(c.roles)) return c.roles.includes('CA') || c.roles.includes('ADMIN');
+      return c.roleType === 'CA' || c.roleType === 'ADMIN';
+    });
+
+    // チームQ目標 ＝ 対象QのCA個人目標の合計 (指示書 5項)
     let teamQTarget = activeCaConsultants.reduce((sum, c) => sum + (qTargetMap.get(c.consultantId) || 0), 0);
-    if (teamQTarget === 0) teamQTarget = qTargetMap.get('TEAM') || 7;
+    if (teamQTarget === 0) teamQTarget = qTargetMap.get('TEAM') || 13;
 
-    // -------------------------------------------------------------
-    // 集計ロジック
-    // -------------------------------------------------------------
-
-    // 1. Q承諾実績 (対象Q期間内に内定承諾・入社決定となった件数)
-    const acceptedSelections = selections.filter(s => {
+    // 担当者フィルターに基づく案件フィルタリング (指示書 8項)
+    const filteredSelections = selections.filter(s => {
       if (s.isArchived) return false;
-      if (s.phase !== '内定承諾' && s.phase !== '入社予定') return false;
+      if (selectedConsultantId === 'ALL') return true;
 
+      return activeRoleType === 'CA'
+        ? (s.caId === selectedConsultantId || s.caConsultantId === selectedConsultantId)
+        : (s.raId === selectedConsultantId || s.raConsultantId === selectedConsultantId);
+    });
+
+    // 1. Q承諾実績 (対象Q期間内に内定承諾・入社決定となった件数: 指示書 19項)
+    const acceptedSelections = filteredSelections.filter(s => {
+      if (s.phase !== '内定承諾' && s.phase !== '入社予定') return false;
       const acceptDateStr = s.selectionEndDate || s.phaseUpdatedAt || s.updatedAt;
       if (!acceptDateStr) return false;
-
       const aDate = new Date(acceptDateStr);
       return aDate >= startDate && aDate <= endDate;
     });
     const qAcceptedCount = acceptedSelections.length;
 
-    // 2. Q進行中ヨミ
-    let qInProgressYomi = 0;
-    let missingQCount = 0;
-
-    const inProgressSelectionsInQ = selections.filter(s => {
-      if (s.isArchived) return false;
-      if (s.phase === '選考終了' || s.phase === '内定承諾' || s.phase === '入社予定') return false;
-
-      if (!s.expectedCompletionMonth) {
-        missingQCount++;
+    // 2. Q進行中ヨミ (対象Qに着地見込みの進行中案件: 指示書 6, 17, 18項)
+    const inProgressSelectionsInQ = filteredSelections.filter(s => {
+      if (['選考終了', '内定辞退', '内定承諾', '入社予定', '書類見送り', '面接見送り', '候補者辞退', '他社決定'].includes(s.phase)) {
         return false;
       }
-
-      const qInfo = getQuarterFromYearMonth(s.expectedCompletionMonth);
-      if (!qInfo) {
-        missingQCount++;
-        return false;
-      }
-
-      if (selectedQuarter === 'ALL') {
-        return qInfo.fiscalYear === selectedFiscalYear;
-      }
-      return qInfo.fiscalYear === selectedFiscalYear && qInfo.quarter === selectedQuarter;
+      return isSelectionInQuarter(s, selectedFiscalYear, selectedQuarter);
     });
 
-    qInProgressYomi = inProgressSelectionsInQ.reduce((sum, s) => sum + Number(s.yomi || 0), 0);
-    qInProgressYomi = Math.round(qInProgressYomi * 100) / 100;
+    // ヨミの正規化合計計算 (指示書 6, 16項)
+    const rawYomiSum = inProgressSelectionsInQ.reduce((sum, s) => sum + normalizeYomi(s.yomi), 0);
+    const qInProgressYomi = Math.round(rawYomiSum * 100) / 100;
 
-    // 3. Q着地見込み
+    // 3. 着地見込み, 4. 不足ヨミ, 5. 達成率 (指示書 7, 11, 12, 13項)
+    const targetGoal = selectedConsultantId === 'ALL'
+      ? teamQTarget
+      : (activeRoleType === 'CA' ? (qTargetMap.get(selectedConsultantId) || 4) : null);
+
     const qForecastTotal = Math.round((qAcceptedCount + qInProgressYomi) * 100) / 100;
+    const qShortage = targetGoal !== null ? Math.max(0, Math.round((targetGoal - qForecastTotal) * 100) / 100) : 0;
+    const qAchievementRate = (targetGoal !== null && targetGoal > 0) ? Math.round((qForecastTotal / targetGoal) * 1000) / 10 : 0;
 
-    // 4. Q目標不足ヨミ
-    const qShortage = Math.max(0, Math.round((teamQTarget - qForecastTotal) * 100) / 100);
+    // 担当者名・表示タイトルの成形 (指示書 21項)
+    let scopeBadgeLabel = '集計対象: チーム全体';
+    if (selectedConsultantId !== 'ALL') {
+      const selectedCons = consultantsMap.get(selectedConsultantId);
+      const cName = selectedCons ? selectedCons.name : '担当者';
+      scopeBadgeLabel = `集計対象: ${cName} (${activeRoleType}担当)`;
+    }
 
-    // 5. Q見込み達成率
-    const qAchievementRate = teamQTarget > 0 
-      ? Math.round((qForecastTotal / teamQTarget) * 1000) / 10 
-      : 0;
+    // 動的年度選択肢 (現在年を中心)
+    const baseFY = currentInitialFQ.fiscalYear;
+    const fyOptions = [baseFY - 1, baseFY, baseFY + 1, baseFY + 2];
 
-    // コンサル別集計 (CAを最優先で表示)
-    const activeConsultants = consultants.filter(c => !c.isArchived);
-    const consultantStats = activeConsultants.map(c => {
-      const isCa = c.roleType === 'CA' || c.role === 'member' && !c.roleType;
-      const cTarget = isCa ? (qTargetMap.get(c.consultantId) || 3) : 0; // RA/管理者は目標0 (指示書 6-1項)
-
-      const cAccepted = acceptedSelections.filter(s => s.caId === c.consultantId || s.raId === c.consultantId || s.caConsultantId === c.consultantId).length;
-
-      const cInProgSelections = inProgressSelectionsInQ.filter(s => s.caId === c.consultantId || s.raId === c.consultantId || s.caConsultantId === c.consultantId);
-      const cInProgYomi = Math.round(cInProgSelections.reduce((sum, s) => sum + Number(s.yomi || 0), 0) * 100) / 100;
-
-      const cForecast = Math.round((cAccepted + cInProgYomi) * 100) / 100;
-      const cShortage = isCa ? Math.max(0, Math.round((cTarget - cForecast) * 100) / 100) : 0;
-      const cRate = isCa && cTarget > 0 ? Math.round((cForecast / cTarget) * 1000) / 10 : 0;
-
-      return {
-        consultant: c,
-        isCa,
-        target: cTarget,
-        accepted: cAccepted,
-        inProgYomi: cInProgYomi,
-        forecast: cForecast,
-        shortage: cShortage,
-        rate: cRate
-      };
-    });
-
-    // 企業別ヨミ上位
+    // 企業別ヨミ集計 (上位社抽出用)
     const companyYomiMap = new Map();
     inProgressSelectionsInQ.forEach(s => {
       const compId = s.companyId;
+      if (!compId) return;
       const current = companyYomiMap.get(compId) || {
         companyId: compId,
         companyName: s.companyName,
         totalYomi: 0,
         selectionCount: 0
       };
-      current.totalYomi += Number(s.yomi || 0);
+      current.totalYomi += normalizeYomi(s.yomi);
       current.selectionCount += 1;
       companyYomiMap.set(compId, current);
     });
@@ -3064,223 +3452,197 @@ function renderDashboard(container, { onNavigateToSelections, onNavigateToConsul
       .sort((a, b) => b.totalYomi - a.totalYomi)
       .slice(0, 5);
 
-    saveDashboardState({
-      fiscalYear: selectedFiscalYear,
-      quarter: selectedQuarter,
-      scrollTop: window.scrollY || document.documentElement.scrollTop
-    });
-
     container.innerHTML = `
       <div class="space-y-6">
-        <!-- ヘッダー & 期間選択 -->
-        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+        <!-- 画面ヘッダー & フィルターコントロール (指示書 3, 8, 21項) -->
+        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
             <div class="flex items-center space-x-3">
               <h2 class="text-xl font-bold text-slate-800">全体選考・ヨミダッシュボード</h2>
-              <span class="px-3 py-1 bg-indigo-600 text-white font-extrabold rounded-full text-xs shadow-sm">${qRange.label}</span>
+              <span class="px-2.5 py-1 bg-indigo-50 text-indigo-700 font-bold rounded-lg border border-indigo-200 text-xs">${scopeBadgeLabel}</span>
             </div>
-            <p class="text-xs text-slate-500 mt-1">四半期（Q）CA目標管理・選考進捗リアルタイム集計</p>
+            <p class="text-xs text-slate-500 mt-1">※初期表示は「チーム全体」です。担当者フィルターで特定コンサルタントの状況へ切り替え可能です。</p>
           </div>
 
-          <div class="flex items-center space-x-2 text-xs">
+          <div class="flex flex-wrap items-center gap-2 text-xs">
+            <!-- 年度選択 (指示書 4, 22項) -->
             <span class="font-bold text-slate-700">対象年度:</span>
-            <select id="select-fiscal-year" class="bg-slate-50 border border-slate-300 font-bold rounded px-2.5 py-1.5 text-slate-800 focus:outline-none">
-              <option value="2025" ${selectedFiscalYear === 2025 ? 'selected' : ''}>2025年度 (2025/10〜2026/09)</option>
-              <option value="2026" ${selectedFiscalYear === 2026 ? 'selected' : ''}>2026年度 (2026/10〜2027/09)</option>
+            <select id="select-fiscal-year" class="bg-slate-50 border border-slate-300 font-bold rounded px-2.5 py-1.5 text-slate-800 focus:outline-none focus:border-indigo-600">
+              ${fyOptions.map(fy => `<option value="${fy}" ${selectedFiscalYear === fy ? 'selected' : ''}>${fy}年度</option>`).join('')}
             </select>
 
-            <span class="font-bold text-slate-700 ml-2">四半期 (Q):</span>
-            <div class="flex items-center space-x-1 bg-slate-100 p-1 rounded-lg font-bold border border-slate-200">
-              <button data-q="Q1" class="px-2.5 py-1 rounded transition ${selectedQuarter === 'Q1' ? 'bg-indigo-600 text-white shadow' : 'text-slate-600 hover:text-slate-900'}">1Q (10-12月)</button>
-              <button data-q="Q2" class="px-2.5 py-1 rounded transition ${selectedQuarter === 'Q2' ? 'bg-indigo-600 text-white shadow' : 'text-slate-600 hover:text-slate-900'}">2Q (1-3月)</button>
-              <button data-q="Q3" class="px-2.5 py-1 rounded transition ${selectedQuarter === 'Q3' ? 'bg-indigo-600 text-white shadow' : 'text-slate-600 hover:text-slate-900'}">3Q (4-6月)</button>
-              <button data-q="Q4" class="px-2.5 py-1 rounded transition ${selectedQuarter === 'Q4' ? 'bg-indigo-600 text-white shadow' : 'text-slate-600 hover:text-slate-900'}">4Q (7-9月)</button>
-              <button data-q="ALL" class="px-2.5 py-1 rounded transition ${selectedQuarter === 'ALL' ? 'bg-indigo-600 text-white shadow' : 'text-slate-600 hover:text-slate-900'}">年度通期</button>
-            </div>
+            <!-- Q選択 -->
+            <span class="font-bold text-slate-700 ml-1">四半期 (Q):</span>
+            <select id="select-fiscal-q" class="bg-slate-50 border border-slate-300 font-bold rounded px-2.5 py-1.5 text-indigo-900 focus:outline-none focus:border-indigo-600">
+              <option value="Q1" ${selectedQuarter === 'Q1' ? 'selected' : ''}>1Q (10-12月)</option>
+              <option value="Q2" ${selectedQuarter === 'Q2' ? 'selected' : ''}>2Q (1-3月)</option>
+              <option value="Q3" ${selectedQuarter === 'Q3' ? 'selected' : ''}>3Q (4-6月)</option>
+              <option value="Q4" ${selectedQuarter === 'Q4' ? 'selected' : ''}>4Q (7-9月)</option>
+              <option value="ALL" ${selectedQuarter === 'ALL' ? 'selected' : ''}>年度通期</option>
+            </select>
+
+            <!-- 担当者フィルター (初期値: チーム全体: 指示書 8項) -->
+            <span class="font-bold text-slate-700 ml-1">担当者:</span>
+            <select id="select-dashboard-consultant" class="bg-slate-50 border border-slate-300 font-bold rounded px-3 py-1.5 text-slate-800 focus:outline-none focus:border-indigo-600">
+              <option value="ALL" ${selectedConsultantId === 'ALL' ? 'selected' : ''}>チーム全体 (全CA/RA)</option>
+              ${consultants.map(c => {
+                const cRoleLabel = c.roles && Array.isArray(c.roles) && c.roles.length > 0 ? c.roles.join('・') : (c.roleType || 'CA');
+                return `<option value="${c.consultantId}" ${selectedConsultantId === c.consultantId ? 'selected' : ''}>${c.name} (${cRoleLabel})</option>`;
+              }).join('')}
+            </select>
+
+            ${selectedConsultantId !== 'ALL' ? `
+              <div class="bg-slate-100 p-1 rounded-lg flex items-center border border-slate-200 font-bold ml-1">
+                <button id="btn-dashboard-role-ca" class="px-2.5 py-0.5 rounded transition ${activeRoleType === 'CA' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'}">CA</button>
+                <button id="btn-dashboard-role-ra" class="px-2.5 py-0.5 rounded transition ${activeRoleType === 'RA' ? 'bg-purple-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'}">RA</button>
+              </div>
+            ` : ''}
           </div>
         </div>
 
-        <!-- 上段集計カード: チームQ目標 (CA限定集計) (指示書 6-3項) -->
+        <!-- 上段集計カード: Q目標・実績・進行中ヨミ (指示書 4, 5, 6, 7項) -->
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          <!-- 1. チームQ目標 -->
-          <div class="bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-1">
-            <div class="text-xs text-slate-500 font-bold">チームQ目標 (CA合算)</div>
-            <div class="text-2xl font-black text-slate-800">${teamQTarget}<span class="text-xs font-normal text-slate-500 ml-1">件</span></div>
-            <div class="text-[10px] text-slate-400">CA個人Q目標の合計</div>
+          <!-- 1. Q目標 -->
+          <div class="bg-slate-900 text-white p-4 rounded-xl border border-slate-800 shadow-sm space-y-1">
+            <div class="text-xs text-slate-400 font-semibold">${selectedConsultantId === 'ALL' ? 'チームQ目標 (CA合計)' : 'Q目標'}</div>
+            <div class="text-2xl font-black mt-1">
+              ${targetGoal === null ? '<span class="text-sm text-slate-400 font-bold">対象外</span>' : `${targetGoal}<span class="text-xs font-normal text-slate-400 ml-1">件</span>`}
+            </div>
+            <div class="text-[10px] text-slate-400">${selectedConsultantId === 'ALL' ? '全CA目標の合算値' : (activeRoleType === 'RA' ? 'RA表示時は対象外' : '個人Q目標')}</div>
           </div>
 
           <!-- 2. Q承諾実績 -->
           <div class="bg-emerald-50/70 p-4 rounded-xl border border-emerald-200 shadow-sm space-y-1">
             <div class="text-xs text-emerald-800 font-extrabold">Q承諾実績</div>
-            <div class="text-2xl font-black text-emerald-600">${qAcceptedCount}<span class="text-xs font-normal text-emerald-700 ml-1">件</span></div>
+            <div class="text-2xl font-black text-emerald-600 mt-1">${qAcceptedCount}<span class="text-xs font-normal text-emerald-700 ml-1">件</span></div>
             <div class="text-[10px] text-emerald-700">期間内の確定承諾数</div>
           </div>
 
           <!-- 3. Q進行中ヨミ -->
           <div class="bg-indigo-50/70 p-4 rounded-xl border border-indigo-200 shadow-sm space-y-1">
             <div class="text-xs text-indigo-800 font-extrabold">Q進行中ヨミ合計</div>
-            <div class="text-2xl font-black text-indigo-600">${qInProgressYomi}<span class="text-xs font-normal text-indigo-700 ml-1">件</span></div>
-            <div class="text-[10px] text-indigo-700">着地見込みヨミの積算</div>
+            <div class="text-2xl font-black text-indigo-600 mt-1">${qInProgressYomi}<span class="text-xs font-normal text-indigo-700 ml-1">件</span></div>
+            <div class="text-[10px] text-indigo-700">着地見込みヨミの加算値</div>
           </div>
 
           <!-- 4. Q着地見込み -->
           <div class="bg-purple-50/70 p-4 rounded-xl border border-purple-200 shadow-sm space-y-1">
             <div class="text-xs text-purple-800 font-extrabold">Q着地見込み</div>
-            <div class="text-2xl font-black text-purple-600">${qForecastTotal}<span class="text-xs font-normal text-purple-700 ml-1">件</span></div>
+            <div class="text-2xl font-black text-purple-600 mt-1">${qForecastTotal}<span class="text-xs font-normal text-purple-700 ml-1">件</span></div>
             <div class="text-[10px] text-purple-700">承諾実績 ＋ 進行中ヨミ</div>
           </div>
 
           <!-- 5. Q目標不足ヨミ -->
           <div class="bg-rose-50/70 p-4 rounded-xl border border-rose-200 shadow-sm space-y-1">
             <div class="text-xs text-rose-800 font-extrabold">Q目標不足ヨミ</div>
-            <div class="text-2xl font-black text-rose-600">${qShortage}<span class="text-xs font-normal text-rose-700 ml-1">件</span></div>
-            <div class="text-[10px] text-rose-700">目標との乖離Gap</div>
+            <div class="text-2xl font-black text-rose-600 mt-1">
+              ${targetGoal === null ? '<span class="text-sm text-rose-400 font-bold">-</span>' : `${qShortage}<span class="text-xs font-normal text-rose-700 ml-1">件</span>`}
+            </div>
+            <div class="text-[10px] text-rose-700">目標との差分Gap</div>
           </div>
 
           <!-- 6. Q見込み達成率 -->
           <div class="bg-amber-50/70 p-4 rounded-xl border border-amber-200 shadow-sm space-y-1">
             <div class="text-xs text-amber-800 font-extrabold">Q見込み達成率</div>
-            <div class="text-2xl font-black text-amber-600">${qAchievementRate}<span class="text-xs font-normal text-amber-700 ml-1">%</span></div>
-            <div class="text-[10px] text-amber-700">着地見込み ÷ Q目標</div>
+            <div class="text-2xl font-black text-amber-600 mt-1">
+              ${targetGoal === null ? '<span class="text-sm text-amber-400 font-bold">-</span>' : `${qAchievementRate}%`}
+            </div>
+            <div class="text-[10px] text-amber-700">着地見込み ÷ 目標</div>
           </div>
         </div>
 
-        <!-- 警告バナー: 着地見込みQ未設定案件 -->
-        ${missingQCount > 0 ? `
-          <div class="bg-amber-50 border-l-4 border-amber-500 p-4 rounded-r-xl shadow-sm flex items-center justify-between text-xs">
-            <div class="flex items-center space-x-2 text-amber-900 font-bold">
-              <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
-              <span>注意: 着地見込みQ（完了見込み月）が未設定の進行中案件が <strong>${missingQCount}件</strong> あります。</span>
-            </div>
-            <button id="btn-fix-missing-q" class="px-3 py-1 bg-amber-600 hover:bg-amber-500 text-white font-bold rounded text-xs transition">
-              選考一覧で完了見込み月を設定する
-            </button>
+        <!-- 担当案件一覧テーブル (指示書 4, 20項) -->
+        <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden space-y-3">
+          <div class="px-5 py-4 border-b border-slate-200 flex items-center justify-between">
+            <h3 class="font-bold text-slate-800 text-sm">
+              対象Q 進行案件一覧 (${inProgressSelectionsInQ.length}件)
+            </h3>
+            <span class="text-xs text-slate-500 font-semibold">ヨミ合計: <strong class="text-indigo-600 text-sm font-black">${qInProgressYomi}</strong> 件</span>
           </div>
-        ` : ''}
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs">
+              <thead class="bg-slate-900 text-slate-200 font-semibold border-b border-slate-800">
+                <tr>
+                  <th class="px-4 py-3">候補者名</th>
+                  <th class="px-4 py-3">企業名</th>
+                  <th class="px-4 py-3">求人・ポジション</th>
+                  <th class="px-3 py-3">担当CA</th>
+                  <th class="px-3 py-3">担当RA</th>
+                  <th class="px-3 py-3">選考フェーズ</th>
+                  <th class="px-3 py-3 text-right">ヨミ</th>
+                  <th class="px-3 py-3">完了見込み月</th>
+                  <th class="px-3 py-3 text-center">操作</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200">
+                ${inProgressSelectionsInQ.length === 0 ? `
+                  <tr><td colspan="9" class="text-center py-8 text-slate-400 font-bold">対象Qに着地見込みの選考案件がありません。</td></tr>
+                ` : inProgressSelectionsInQ.map(s => {
+                  const comp = companiesMap.get(s.companyId);
+                  const job = jobsMap.get(s.jobId);
+                  const caCons = consultantsMap.get(s.caId || s.caConsultantId);
+                  const raCons = consultantsMap.get(s.raId || s.raConsultantId);
+                  const normalizedYomiVal = normalizeYomi(s.yomi);
+                  const percentStr = Math.round(normalizedYomiVal * 100) + '%';
 
-        <!-- 2カラムコンテンツ: コンサル別一覧 & 上位企業ヨミ -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          <!-- 左側: コンサル別目標・実績・ヨミ一覧 (所属チーム列削除対応) (指示書 5-5項, 6-4項) -->
-          <div class="lg:col-span-2 bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden space-y-3">
-            <div class="px-5 py-4 border-b border-slate-200 flex items-center justify-between">
-              <h3 class="font-bold text-slate-800 text-sm">
-                コンサル別 Q目標・実績・ヨミ一覧 (${qRange.label})
-              </h3>
-            </div>
-
-            <div class="overflow-x-auto">
-              <table class="w-full text-left text-xs">
-                <thead class="bg-slate-900 text-slate-200 font-semibold border-b border-slate-800">
-                  <tr>
-                    <th class="px-3 py-3">コンサルタント名</th>
-                    <th class="px-3 py-3">役割</th>
-                    <th class="px-3 py-3 text-right">Q目標</th>
-                    <th class="px-3 py-3 text-right">承諾実績</th>
-                    <th class="px-3 py-3 text-right">進行中ヨミ</th>
-                    <th class="px-3 py-3 text-right">Q着地見込み</th>
-                    <th class="px-3 py-3 text-right">Q不足ヨミ</th>
-                    <th class="px-3 py-3 text-right">Q達成率</th>
-                    <th class="px-3 py-3 text-center">操作</th>
-                  </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-200">
-                  ${consultantStats.map(stat => {
-                    const c = stat.consultant;
-                    return `
-                      <tr class="hover:bg-indigo-50/40 transition">
-                        <td class="px-3 py-3 font-bold text-slate-900 flex items-center gap-1.5">
-                          <span>${c.name}</span>
-                          ${c.roleType === 'ADMIN' ? '<span class="text-[9px] bg-slate-200 text-slate-800 px-1.5 py-0.5 rounded font-bold">管理者</span>' : ''}
-                        </td>
-                        <td class="px-3 py-3 text-slate-600 font-medium">${c.roleType || 'CA'}</td>
-                        <td class="px-3 py-3 text-right font-bold text-slate-900">${stat.isCa ? `${stat.target}件` : '-'}</td>
-                        <td class="px-3 py-3 text-right font-bold text-emerald-600">${stat.accepted}件</td>
-                        <td class="px-3 py-3 text-right font-bold text-indigo-600">${stat.inProgYomi}件</td>
-                        <td class="px-3 py-3 text-right font-black text-purple-700">${stat.forecast}件</td>
-                        <td class="px-3 py-3 text-right font-bold ${stat.shortage > 0 ? 'text-rose-600' : 'text-slate-400'}">${stat.isCa ? `${stat.shortage}件` : '-'}</td>
-                        <td class="px-3 py-3 text-right font-black ${stat.rate >= 100 ? 'text-emerald-600' : (stat.rate >= 50 ? 'text-amber-600' : 'text-rose-600')}">
-                          ${stat.isCa ? `${stat.rate}%` : '-'}
-                        </td>
-                        <td class="px-3 py-3 text-center">
-                          <button class="btn-goto-consultant px-2.5 py-1 bg-slate-100 hover:bg-indigo-600 hover:text-white rounded text-[11px] font-bold transition" data-id="${c.consultantId}">
-                            詳細
-                          </button>
-                        </td>
-                      </tr>
-                    `;
-                  }).join('')}
-                </tbody>
-              </table>
-            </div>
-          </div>
-
-          <!-- 右側: 対象Q 企業別ヨミ合計 上位企業 -->
-          <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-5 space-y-4">
-            <div class="border-b border-slate-200 pb-3 flex items-center justify-between">
-              <h3 class="font-bold text-slate-800 text-sm flex items-center gap-1.5">
-                <svg class="w-4 h-4 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                ${selectedQuarter === 'ALL' ? '通期' : selectedQuarter} 企業別ヨミ上位
-              </h3>
-              <span class="text-[10px] text-slate-400 font-medium">上位5社</span>
-            </div>
-
-            <div class="space-y-3">
-              ${topCompanyYomiList.length === 0 ? `
-                <div class="text-center py-8 text-slate-400 text-xs">対象Qに着地見込みのヨミがある企業はありません。</div>
-              ` : topCompanyYomiList.map((item, idx) => {
-                const comp = companiesMap.get(item.companyId);
-                const rankBadgeClass = comp ? (comp.rank === 'SS' ? 'bg-rose-100 text-rose-800' : (comp.rank === 'S' ? 'bg-amber-100 text-amber-800' : 'bg-blue-100 text-blue-800')) : 'bg-slate-100';
-
-                return `
-                  <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between text-xs hover:border-indigo-300 transition cursor-pointer btn-goto-company" data-id="${item.companyId}">
-                    <div class="space-y-0.5">
-                      <div class="font-bold text-slate-900 flex items-center gap-1.5">
-                        <span class="text-slate-400 text-[10px] font-mono">${idx + 1}.</span>
-                        <span>${item.companyName}</span>
-                        ${comp ? `<span class="px-1.5 py-0.2 text-[9px] font-extrabold rounded ${rankBadgeClass}">${comp.rank}</span>` : ''}
-                      </div>
-                      <div class="text-[10px] text-slate-500">案件数: ${item.selectionCount}件</div>
-                    </div>
-                    <div class="text-right">
-                      <div class="font-black text-purple-700 text-sm">${item.totalYomi}件</div>
-                      <div class="text-[10px] text-indigo-600 font-bold">企業ヨミ</div>
-                    </div>
-                  </div>
-                `;
-              }).join('')}
-            </div>
+                  return `
+                    <tr class="hover:bg-indigo-50/40 transition">
+                      <td class="px-4 py-2.5 font-bold text-slate-900">${s.candidateName}</td>
+                      <td class="px-4 py-2.5 font-medium text-slate-800">${comp ? comp.name : s.companyName}</td>
+                      <td class="px-4 py-2.5 text-slate-600">${job ? (job.title || job.jobName) : s.jobName}</td>
+                      <td class="px-3 py-2.5 font-semibold text-slate-700">${caCons ? caCons.name : (s.caName || '-')}</td>
+                      <td class="px-3 py-2.5 font-semibold text-slate-700">${raCons ? raCons.name : (s.raName || '-')}</td>
+                      <td class="px-3 py-2.5 font-semibold text-indigo-700">${s.phase}</td>
+                      <td class="px-3 py-2.5 text-right font-black ${normalizedYomiVal > 0 ? 'text-indigo-600' : 'text-slate-400'}">${percentStr}</td>
+                      <td class="px-3 py-2.5 font-mono text-slate-700 font-bold">${s.expectedCompletionMonth || s.actionDeadline || '-'}</td>
+                      <td class="px-3 py-2.5 text-center">
+                        <button class="btn-detail px-2.5 py-1 bg-slate-100 hover:bg-indigo-600 hover:text-white rounded text-xs transition" data-id="${s.selectionId}">詳細</button>
+                      </td>
+                    </tr>
+                  `;
+                }).join('')}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
     `;
 
+    // イベントリスナーの設定
     container.querySelector('#select-fiscal-year')?.addEventListener('change', (e) => {
       selectedFiscalYear = parseInt(e.target.value, 10);
+      saveDashboardState({ fiscalYear: selectedFiscalYear });
       updateView();
     });
 
-    container.querySelectorAll('button[data-q]').forEach(btn => {
+    container.querySelector('#select-fiscal-q')?.addEventListener('change', (e) => {
+      selectedQuarter = e.target.value;
+      saveDashboardState({ quarter: selectedQuarter });
+      updateView();
+    });
+
+    container.querySelector('#select-dashboard-consultant')?.addEventListener('change', (e) => {
+      selectedConsultantId = e.target.value;
+      saveDashboardState({ consultantId: selectedConsultantId });
+      updateView();
+    });
+
+    container.querySelector('#btn-dashboard-role-ca')?.addEventListener('click', () => {
+      activeRoleType = 'CA';
+      saveDashboardState({ roleType: 'CA' });
+      updateView();
+    });
+
+    container.querySelector('#btn-dashboard-role-ra')?.addEventListener('click', () => {
+      activeRoleType = 'RA';
+      saveDashboardState({ roleType: 'RA' });
+      updateView();
+    });
+
+    container.querySelectorAll('.btn-detail').forEach(btn => {
       btn.addEventListener('click', () => {
-        selectedQuarter = btn.getAttribute('data-q');
-        updateView();
-      });
-    });
-
-    container.querySelector('#btn-fix-missing-q')?.addEventListener('click', () => {
-      onNavigateToSelections({ expectedCompletionMonth: '' });
-    });
-
-    container.querySelectorAll('.btn-goto-consultant').forEach(btn => {
-      btn.addEventListener('click', () => {
-        saveDashboardState({ scrollTop: window.scrollY || document.documentElement.scrollTop });
-        onNavigateToConsultant(btn.getAttribute('data-id'));
-      });
-    });
-
-    container.querySelectorAll('.btn-goto-company').forEach(el => {
-      el.addEventListener('click', () => {
-        saveDashboardState({ scrollTop: window.scrollY || document.documentElement.scrollTop });
-        onNavigateToCompany(el.getAttribute('data-id'));
+        const selId = btn.getAttribute('data-id');
+        if (onNavigateToSelections) onNavigateToSelections(selId);
       });
     });
   }
@@ -6495,17 +6857,17 @@ function renderConsultantView(container, initialConsultantId = '', { onOpenDetai
   let activeConsultantId = initialConsultantId || store.getCurrentConsultant().consultantId;
   let activeRoleType = 'CA'; // 'CA' | 'RA'
 
-  // 現在日からのデフォルト年度・Q判定 (指示書 13項)
-  let selectedFiscalYear = getFiscalYear(new Date());
-  let selectedQuarter = getFiscalQuarter(new Date());
+  // ブラウザの当日日付から正しい年度・Qを自動初期判定 (指示書 1, 3, 4, 5項)
+  const currentInitialFQ = getFiscalQuarterFromDate(new Date());
+  let selectedFiscalYear = currentInitialFQ.fiscalYear;
+  let selectedQuarter = currentInitialFQ.quarter;
 
   function updateView() {
-    const activeCons = consultants.find(c => c.consultantId === activeConsultantId) || consultants[0];
+    const activeCons = consultants.find(c => c.consultantId === activeConsultantId) || consultants[0] || {};
     const selections = store.getSelections();
     const companies = store.getCompanies();
     const jobs = store.getJobs();
     const candidates = store.getCandidates();
-    const histories = store.getHistories();
 
     const companiesMap = new Map(companies.map(c => [c.companyId, c]));
     const candidatesMap = new Map(candidates.map(c => [c.candidateId, c]));
@@ -6516,20 +6878,36 @@ function renderConsultantView(container, initialConsultantId = '', { onOpenDetai
     const endDate = new Date(qRange.endDate);
     endDate.setHours(23, 59, 59, 999);
 
-    // Q目標データの取得 (指示書 13項)
+    // Q目標データの取得 (指示書 19項)
     const qTargets = store.getQTargets(selectedFiscalYear, selectedQuarter);
     const targetObj = qTargets.find(t => t.consultantId === activeCons.consultantId);
-    const myQTarget = targetObj ? Number(targetObj.targetCount || 0) : (activeCons.roleType === 'ADMIN' ? 5 : (activeCons.roleType === 'CA' ? 4 : 3));
+    
+    // RA担当時は目標対象外、CA担当時は個人目標をセット
+    const isRaView = activeRoleType === 'RA';
+    const myQTarget = isRaView 
+      ? null 
+      : (targetObj ? Number(targetObj.targetCount || 0) : (activeCons.roleType === 'ADMIN' ? 5 : (activeCons.roleType === 'CA' ? 4 : 3)));
 
-    // CA / RA による担当案件抽出
+    // CA / RA による担当案件抽出 (ID最優先照合 ＆ 旧データ補完: 指示書 15項)
     const myAllSelections = selections.filter(s => {
       if (s.isArchived) return false;
-      return activeRoleType === 'CA' 
-        ? (s.caId === activeCons.consultantId || s.caConsultantId === activeCons.consultantId)
-        : (s.raId === activeCons.consultantId || s.raConsultantId === activeCons.consultantId);
+      const targetConsId = activeCons.consultantId;
+      const targetName = activeCons.name;
+
+      if (activeRoleType === 'CA') {
+        if (s.caId || s.caConsultantId) {
+          return s.caId === targetConsId || s.caConsultantId === targetConsId;
+        }
+        return s.caName === targetName;
+      } else {
+        if (s.raId || s.raConsultantId) {
+          return s.raId === targetConsId || s.raConsultantId === targetConsId;
+        }
+        return s.raName === targetName;
+      }
     });
 
-    // 1. Q承諾実績 (指示書 13項)
+    // 1. Q承諾実績 (対象Q内に内定承諾日・入社日がある案件: 指示書 17項)
     const myAcceptedSelections = myAllSelections.filter(s => {
       if (s.phase !== '内定承諾' && s.phase !== '入社予定') return false;
       const acceptDateStr = s.selectionEndDate || s.phaseUpdatedAt || s.updatedAt;
@@ -6539,51 +6917,72 @@ function renderConsultantView(container, initialConsultantId = '', { onOpenDetai
     });
     const myAcceptedCount = myAcceptedSelections.length;
 
-    // 2. Q進行中ヨミ (完了見込み月が対象Qに含まれる進行中案件) (指示書 13項)
+    // 2. Q進行中ヨミ (完了見込み月・判定優先度で対象Qに含まれる進行中案件: 指示書 8, 14, 15, 16項)
     const myInProgSelectionsInQ = myAllSelections.filter(s => {
-      if (s.phase === '選考終了' || s.phase === '内定承諾' || s.phase === '入社予定') return false;
-      if (!s.expectedCompletionMonth) return false;
-      const qInfo = getQuarterFromYearMonth(s.expectedCompletionMonth);
-      if (!qInfo) return false;
-      if (selectedQuarter === 'ALL') return qInfo.fiscalYear === selectedFiscalYear;
-      return qInfo.fiscalYear === selectedFiscalYear && qInfo.quarter === selectedQuarter;
+      // 進行中以外・除外対象（内定承諾・辞退・終了等）を除外 (指示書 16項)
+      if (['選考終了', '内定辞退', '内定承諾', '入社予定', '書類見送り', '面接見送り', '候補者辞退', '他社決定'].includes(s.phase)) {
+        return false;
+      }
+      return isSelectionInQuarter(s, selectedFiscalYear, selectedQuarter);
     });
 
-    const myInProgYomi = Math.round(myInProgSelectionsInQ.reduce((sum, s) => sum + Number(s.yomi || 0), 0) * 100) / 100;
+    // ヨミの正規化合計計算 (指示書 9, 10項)
+    const rawYomiSum = myInProgSelectionsInQ.reduce((sum, s) => sum + normalizeYomi(s.yomi), 0);
+    const myInProgYomi = Math.round(rawYomiSum * 100) / 100;
 
-    // 3. Q着地見込み, 4. 不足, 5. 達成率 (指示書 13項)
+    // 3. Q着地見込み, 4. 不足, 5. 達成率 (指示書 11, 12, 13項)
     const myForecast = Math.round((myAcceptedCount + myInProgYomi) * 100) / 100;
-    const myShortage = Math.max(0, Math.round((myQTarget - myForecast) * 100) / 100);
-    const myRate = myQTarget > 0 ? Math.round((myForecast / myQTarget) * 1000) / 10 : 0;
+    
+    let myShortage = 0;
+    let myRate = 0;
 
-    // フェーズ別件数集計
+    if (!isRaView && myQTarget !== null) {
+      myShortage = Math.max(0, Math.round((myQTarget - myForecast) * 100) / 100);
+      myRate = myQTarget > 0 ? Math.round((myForecast / myQTarget) * 1000) / 10 : 0;
+    }
+
+    // フェーズ別件数集計 (完璧な一致保証: 指示書 23項)
     const phaseCounts = PHASES.map(p => ({
       phase: p,
       count: myInProgSelectionsInQ.filter(s => s.phase === p).length
     }));
+
+    // 役割ラベル表示の成形 (undefined 防護: 指示書 20項)
+    const roleDisplay = activeCons.roles && Array.isArray(activeCons.roles) && activeCons.roles.length > 0
+      ? activeCons.roles.join('・')
+      : (activeCons.roleType || 'CA');
+
+    // 動的年度選択肢の計算 (現在年の前後)
+    const baseFY = currentInitialFQ.fiscalYear;
+    const fyOptions = [baseFY - 1, baseFY, baseFY + 1, baseFY + 2];
 
     container.innerHTML = `
       <div class="space-y-6">
         <!-- ヘッダー & コンサル切り替え -->
         <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div class="flex items-center space-x-3">
-            <div class="w-12 h-12 bg-indigo-600 text-white rounded-full font-black text-lg flex items-center justify-center shadow">
-              ${activeCons.name.charAt(0)}
+            <div class="w-12 h-12 bg-indigo-600 text-white rounded-full font-black text-lg flex items-center justify-center shadow shrink-0">
+              ${(activeCons.name || '相').charAt(0)}
             </div>
             <div>
-              <h2 class="text-lg font-bold text-slate-800">${activeCons.name} の選考進捗・Q目標管理</h2>
-              <p class="text-xs text-slate-500">${activeCons.team} / ${activeCons.email}</p>
+              <div class="flex items-center space-x-2">
+                <h2 class="text-lg font-bold text-slate-800">${activeCons.name || '担当者未選択'} の選考進捗・実績管理</h2>
+                <span class="px-2 py-0.5 bg-indigo-100 text-indigo-800 font-extrabold rounded-lg text-xs border border-indigo-200">集計対象: ${activeCons.name || ''}／${activeRoleType}担当</span>
+              </div>
+              <p class="text-xs text-slate-500 font-medium mt-0.5">
+                <span class="px-2 py-0.5 bg-slate-100 text-slate-700 font-bold rounded border border-slate-200 mr-2">${roleDisplay}</span>
+                ${activeCons.email || ''}
+              </p>
             </div>
           </div>
 
-          <div class="flex items-center space-x-3 text-xs">
-            <!-- 年度 ＆ Q選択ドロップダウン (指示書 13項) -->
-            <select id="select-cons-fy" class="bg-slate-50 border border-slate-300 font-bold rounded px-2.5 py-1.5 text-slate-800">
-              <option value="2025" ${selectedFiscalYear === 2025 ? 'selected' : ''}>2025年度</option>
-              <option value="2026" ${selectedFiscalYear === 2026 ? 'selected' : ''}>2026年度</option>
+          <div class="flex flex-wrap items-center gap-2.5 text-xs">
+            <!-- 年度 ＆ Q選択ドロップダウン (指示書 4, 6, 7項) -->
+            <select id="select-cons-fy" class="bg-slate-50 border border-slate-300 font-bold rounded px-2.5 py-1.5 text-slate-800 focus:outline-none focus:border-indigo-600">
+              ${fyOptions.map(fy => `<option value="${fy}" ${selectedFiscalYear === fy ? 'selected' : ''}>${fy}年度</option>`).join('')}
             </select>
 
-            <select id="select-cons-q" class="bg-slate-50 border border-slate-300 font-bold rounded px-2.5 py-1.5 text-indigo-900">
+            <select id="select-cons-q" class="bg-slate-50 border border-slate-300 font-bold rounded px-2.5 py-1.5 text-indigo-900 focus:outline-none focus:border-indigo-600">
               <option value="Q1" ${selectedQuarter === 'Q1' ? 'selected' : ''}>1Q (10-12月)</option>
               <option value="Q2" ${selectedQuarter === 'Q2' ? 'selected' : ''}>2Q (1-3月)</option>
               <option value="Q3" ${selectedQuarter === 'Q3' ? 'selected' : ''}>3Q (4-6月)</option>
@@ -6593,72 +6992,86 @@ function renderConsultantView(container, initialConsultantId = '', { onOpenDetai
 
             <!-- CA / RA 切替 -->
             <div class="bg-slate-100 p-1 rounded-lg flex items-center border border-slate-200 font-bold">
-              <button id="btn-role-ca" class="px-3 py-1 rounded transition ${activeRoleType === 'CA' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-600'}">
+              <button id="btn-role-ca" class="px-3 py-1 rounded transition ${activeRoleType === 'CA' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'}">
                 CA担当
               </button>
-              <button id="btn-role-ra" class="px-3 py-1 rounded transition ${activeRoleType === 'RA' ? 'bg-indigo-600 text-white shadow-sm' : 'text-slate-600'}">
+              <button id="btn-role-ra" class="px-3 py-1 rounded transition ${activeRoleType === 'RA' ? 'bg-purple-600 text-white shadow-sm' : 'text-slate-600 hover:text-slate-900'}">
                 RA担当
               </button>
             </div>
 
-            <select id="select-consultant-change" class="bg-slate-50 border border-slate-300 font-bold rounded px-3 py-2 text-slate-800 focus:outline-none">
-              ${consultants.map(c => `<option value="${c.consultantId}" ${c.consultantId === activeCons.consultantId ? 'selected' : ''}>${c.name} (${c.team})</option>`).join('')}
+            <!-- コンサルタント選択 (undefined完全修正: 指示書 20項) -->
+            <select id="select-consultant-change" class="bg-slate-50 border border-slate-300 font-bold rounded px-3 py-1.5 text-slate-800 focus:outline-none focus:border-indigo-600">
+              ${consultants.map(c => {
+                const cRoleLabel = c.roles && Array.isArray(c.roles) && c.roles.length > 0 ? c.roles.join('・') : (c.roleType || 'CA');
+                return `<option value="${c.consultantId}" ${c.consultantId === activeCons.consultantId ? 'selected' : ''}>${c.name} (${cRoleLabel})</option>`;
+              }).join('')}
             </select>
           </div>
         </div>
 
-        <!-- Q KPIカード (指示書 13項) -->
+        <!-- Q KPIカード (指示書 10, 11, 12, 13, 19項) -->
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          <div class="bg-slate-900 text-white p-4 rounded-xl border border-slate-800">
+          <div class="bg-slate-900 text-white p-4 rounded-xl border border-slate-800 shadow-xs">
             <div class="text-xs text-slate-400 font-semibold">個人Q目標</div>
-            <div class="text-2xl font-black mt-1">${myQTarget}<span class="text-xs font-normal text-slate-400 ml-1">件</span></div>
+            <div class="text-2xl font-black mt-1">
+              ${isRaView ? '<span class="text-sm text-slate-400 font-bold">対象外</span>' : `${myQTarget}<span class="text-xs font-normal text-slate-400 ml-1">件</span>`}
+            </div>
           </div>
 
-          <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-xl">
+          <div class="bg-emerald-50 border border-emerald-200 p-4 rounded-xl shadow-xs">
             <div class="text-xs font-bold text-emerald-800">Q承諾実績</div>
             <div class="text-2xl font-black text-emerald-600 mt-1">${myAcceptedCount}<span class="text-xs font-normal text-emerald-700 ml-1">件</span></div>
           </div>
 
-          <div class="bg-indigo-50 border border-indigo-200 p-4 rounded-xl">
+          <div class="bg-indigo-50 border border-indigo-200 p-4 rounded-xl shadow-xs">
             <div class="text-xs font-bold text-indigo-800">Q進行中ヨミ合計</div>
             <div class="text-2xl font-black text-indigo-600 mt-1">${myInProgYomi}<span class="text-xs font-normal text-indigo-700 ml-1">件</span></div>
           </div>
 
-          <div class="bg-purple-50 border border-purple-200 p-4 rounded-xl">
+          <div class="bg-purple-50 border border-purple-200 p-4 rounded-xl shadow-xs">
             <div class="text-xs font-bold text-purple-800">Q着地見込み</div>
             <div class="text-2xl font-black text-purple-600 mt-1">${myForecast}<span class="text-xs font-normal text-purple-700 ml-1">件</span></div>
           </div>
 
-          <div class="bg-rose-50 border border-rose-200 p-4 rounded-xl">
+          <div class="bg-rose-50 border border-rose-200 p-4 rounded-xl shadow-xs">
             <div class="text-xs font-bold text-rose-800">Q不足ヨミ</div>
-            <div class="text-2xl font-black text-rose-600 mt-1">${myShortage}<span class="text-xs font-normal text-rose-700 ml-1">件</span></div>
+            <div class="text-2xl font-black text-rose-600 mt-1">
+              ${isRaView ? '<span class="text-sm text-rose-400 font-bold">-</span>' : `${myShortage}<span class="text-xs font-normal text-rose-700 ml-1">件</span>`}
+            </div>
           </div>
 
-          <div class="bg-amber-50 border border-amber-200 p-4 rounded-xl">
+          <div class="bg-amber-50 border border-amber-200 p-4 rounded-xl shadow-xs">
             <div class="text-xs font-bold text-amber-800">Q見込み達成率</div>
-            <div class="text-2xl font-black text-amber-600 mt-1">${myRate}%</div>
+            <div class="text-2xl font-black text-amber-600 mt-1">
+              ${isRaView ? '<span class="text-sm text-amber-400 font-bold">-</span>' : `${myRate}%`}
+            </div>
           </div>
         </div>
 
-        <!-- フェーズ別件数プログレス -->
+        <!-- フェーズ別件数プログレス (一致性保証: 指示書 7, 23項) -->
         <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-5 space-y-3">
-          <h3 class="font-bold text-slate-800 text-xs">対象Q フェーズ別案件内訳 (${qRange.label})</h3>
+          <h3 class="font-bold text-slate-800 text-xs flex items-center justify-between">
+            <span>対象Q フェーズ別案件内訳 (${qRange.label})</span>
+            <span class="text-[11px] text-slate-500 font-normal">※進行中案件 ${myInProgSelectionsInQ.length} 件</span>
+          </h3>
           <div class="grid grid-cols-2 sm:grid-cols-5 md:grid-cols-10 gap-2 text-center text-xs">
             ${phaseCounts.map(item => `
-              <div class="bg-slate-50 border border-slate-200 p-2 rounded-lg">
+              <div class="bg-slate-50 border border-slate-200 p-2 rounded-lg hover:border-indigo-300 transition">
                 <div class="text-[10px] text-slate-500 font-semibold line-clamp-1" title="${item.phase}">${item.phase}</div>
-                <div class="text-base font-black text-indigo-600 mt-1">${item.count}</div>
+                <div class="text-base font-black ${item.count > 0 ? 'text-indigo-600' : 'text-slate-400'} mt-1">${item.count}</div>
               </div>
             `).join('')}
           </div>
         </div>
 
-        <!-- 担当案件一覧テーブル (指示書 13項) -->
+        <!-- 担当案件一覧テーブル (ヨミ正規化表示 & 完全一致保証: 指示書 21, 22, 23項) -->
         <div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden space-y-3">
           <div class="px-5 py-4 border-b border-slate-200 flex items-center justify-between">
             <h3 class="font-bold text-slate-800 text-sm">
               対象Q 担当案件一覧 (${myInProgSelectionsInQ.length}件)
             </h3>
+            <span class="text-xs text-slate-500 font-semibold">ヨミ合計: <strong class="text-indigo-600 text-sm font-black">${myInProgYomi}</strong> 件</span>
           </div>
           <div class="overflow-x-auto">
             <table class="w-full text-left text-xs">
@@ -6676,21 +7089,23 @@ function renderConsultantView(container, initialConsultantId = '', { onOpenDetai
               </thead>
               <tbody class="divide-y divide-slate-200">
                 ${myInProgSelectionsInQ.length === 0 ? `
-                  <tr><td colspan="8" class="text-center py-8 text-slate-400">対象Qに着地見込みの選考案件がありません。</td></tr>
+                  <tr><td colspan="8" class="text-center py-8 text-slate-400 font-bold">対象Qに着地見込みの選考案件がありません。</td></tr>
                 ` : myInProgSelectionsInQ.map(s => {
                   const cand = candidatesMap.get(s.candidateId);
                   const comp = companiesMap.get(s.companyId);
                   const job = jobsMap.get(s.jobId);
+                  const normalizedYomiVal = normalizeYomi(s.yomi);
+                  const percentStr = Math.round(normalizedYomiVal * 100) + '%';
 
                   return `
-                    <tr class="hover:bg-slate-50 transition">
+                    <tr class="hover:bg-indigo-50/40 transition">
                       <td class="px-4 py-2.5 font-bold text-slate-900">${cand ? cand.name : s.candidateName}</td>
                       <td class="px-4 py-2.5 font-medium text-slate-800">${comp ? comp.name : s.companyName}</td>
-                      <td class="px-4 py-2.5 text-slate-600">${job ? job.title : s.jobName}</td>
+                      <td class="px-4 py-2.5 text-slate-600">${job ? (job.title || job.jobName) : s.jobName}</td>
                       <td class="px-3 py-2.5 font-semibold text-indigo-700">${s.phase}</td>
                       <td class="px-3 py-2.5 text-slate-700">${s.progressStatus}</td>
-                      <td class="px-3 py-2.5 text-right font-black text-indigo-600">${s.yomi * 100}%</td>
-                      <td class="px-3 py-2.5 font-mono text-slate-700 font-bold">${s.expectedCompletionMonth || '-'}</td>
+                      <td class="px-3 py-2.5 text-right font-black ${normalizedYomiVal > 0 ? 'text-indigo-600' : 'text-slate-400'}">${percentStr}</td>
+                      <td class="px-3 py-2.5 font-mono text-slate-700 font-bold">${s.expectedCompletionMonth || s.actionDeadline || '-'}</td>
                       <td class="px-3 py-2.5 text-center">
                         <button class="btn-detail px-2.5 py-1 bg-slate-100 hover:bg-indigo-600 hover:text-white rounded text-xs transition" data-id="${s.selectionId}">詳細</button>
                       </td>
@@ -6704,11 +7119,31 @@ function renderConsultantView(container, initialConsultantId = '', { onOpenDetai
       </div>
     `;
 
-    container.querySelector('#select-cons-fy')?.addEventListener('change', (e) => { selectedFiscalYear = parseInt(e.target.value, 10); updateView(); });
-    container.querySelector('#select-cons-q')?.addEventListener('change', (e) => { selectedQuarter = e.target.value; updateView(); });
-    container.querySelector('#btn-role-ca')?.addEventListener('click', () => { activeRoleType = 'CA'; updateView(); });
-    container.querySelector('#btn-role-ra')?.addEventListener('click', () => { activeRoleType = 'RA'; updateView(); });
-    container.querySelector('#select-consultant-change')?.addEventListener('change', (e) => { activeConsultantId = e.target.value; updateView(); });
+    // イベントリスナー設定（手動切り替え時に自動で当日Qに戻さない構造: 指示書 6, 25項）
+    container.querySelector('#select-cons-fy')?.addEventListener('change', (e) => {
+      selectedFiscalYear = parseInt(e.target.value, 10);
+      updateView();
+    });
+
+    container.querySelector('#select-cons-q')?.addEventListener('change', (e) => {
+      selectedQuarter = e.target.value;
+      updateView();
+    });
+
+    container.querySelector('#btn-role-ca')?.addEventListener('click', () => {
+      activeRoleType = 'CA';
+      updateView();
+    });
+
+    container.querySelector('#btn-role-ra')?.addEventListener('click', () => {
+      activeRoleType = 'RA';
+      updateView();
+    });
+
+    container.querySelector('#select-consultant-change')?.addEventListener('change', (e) => {
+      activeConsultantId = e.target.value;
+      updateView();
+    });
 
     container.querySelectorAll('.btn-detail').forEach(btn => {
       btn.addEventListener('click', () => onOpenDetail(btn.getAttribute('data-id')));
@@ -7567,6 +8002,9 @@ function renderMasterManagement(container) {
                 <button data-tab="targets" class="px-3 py-2 rounded-md transition ${activeTab === 'targets' ? 'bg-indigo-600 text-white shadow' : 'text-slate-600 hover:text-slate-900'}">
                   個人Q目標管理
                 </button>
+                <button data-tab="data_management" class="px-3 py-2 rounded-md transition ${activeTab === 'data_management' ? 'bg-rose-600 text-white shadow font-black' : 'text-rose-700 bg-rose-50 hover:bg-rose-100'}">
+                  ⚙️ データ管理・初期化
+                </button>
               ` : ''}
             </div>
           </div>
@@ -7578,6 +8016,7 @@ function renderMasterManagement(container) {
           ${activeTab === 'jobs' ? renderJobMaster(filterItems(jobs), companiesMap, consultantsMap, raConsultants, isAdmin) : ''}
           ${activeTab === 'consultants' && isAdmin ? renderConsultantMaster(filterItems(consultants)) : ''}
           ${activeTab === 'targets' && isAdmin ? renderQTargetMaster(consultants, qTargets, targetFiscalYear, (fy) => { targetFiscalYear = fy; saveMasterState({ targetFiscalYear: fy }); updateView(); }) : ''}
+          ${activeTab === 'data_management' && isAdmin ? renderDataManagementSection(updateView) : ''}
         </div>
       </div>
     `;
@@ -7806,11 +8245,22 @@ function renderConsultantMaster(consultants) {
           <tbody class="divide-y divide-slate-200">
             ${consultants.map(c => {
               const isEff = c.status !== 'inactive' && !c.isArchived;
+              const rolesList = (c.roles && Array.isArray(c.roles) && c.roles.length > 0)
+                ? c.roles
+                : [c.roleType || 'CA'];
+
+              const roleBadgesHTML = rolesList.map(r => {
+                if (r === 'CA') return '<span class="px-2 py-0.5 bg-blue-100 text-blue-800 border border-blue-200 font-extrabold rounded text-[11px] mr-1">CA</span>';
+                if (r === 'RA') return '<span class="px-2 py-0.5 bg-purple-100 text-purple-800 border border-purple-200 font-extrabold rounded text-[11px] mr-1">RA</span>';
+                if (r === 'ADMIN') return '<span class="px-2 py-0.5 bg-rose-100 text-rose-800 border border-rose-200 font-extrabold rounded text-[11px] mr-1">管理者</span>';
+                return `<span class="px-2 py-0.5 bg-slate-100 text-slate-800 font-bold rounded text-[11px] mr-1">${r}</span>`;
+              }).join('');
+
               return `
                 <tr class="${c.isArchived ? 'bg-slate-100/80 text-slate-400' : 'hover:bg-slate-50'} transition">
                   <td class="px-3 py-2.5 font-bold text-slate-900">${c.name}</td>
                   <td class="px-3 py-2.5 font-mono text-slate-600">${c.email}</td>
-                  <td class="px-3 py-2.5 font-bold text-indigo-700">${c.roleType || 'CA'}</td>
+                  <td class="px-3 py-2.5 font-bold">${roleBadgesHTML}</td>
                   <td class="px-3 py-2.5">
                     ${c.isArchived 
                       ? '<span class="px-2 py-0.5 bg-rose-100 text-rose-800 font-bold rounded">アーカイブ済み</span>' 
@@ -8400,13 +8850,20 @@ function openJobFormModal(job = null, onClose) {
 }
 
 /**
- * コンサル 登録・編集モーダル (指示書 5項)
+ * コンサル 登録・編集モーダル (指示書 2, 4, 5, 13, 15項)
  */
 function openConsultantFormModal(consultant = null, onClose) {
   let modalEl = document.getElementById('consultant-form-modal');
   if (modalEl) modalEl.remove();
 
   const isEdit = !!consultant;
+  const currentRoles = (consultant && consultant.roles && Array.isArray(consultant.roles))
+    ? consultant.roles
+    : (consultant ? [consultant.roleType || 'CA'] : ['CA']);
+
+  const hasCA = currentRoles.includes('CA');
+  const hasRA = currentRoles.includes('RA');
+  const hasAdmin = currentRoles.includes('ADMIN');
 
   modalEl = document.createElement('div');
   modalEl.id = 'consultant-form-modal';
@@ -8432,23 +8889,32 @@ function openConsultantFormModal(consultant = null, onClose) {
           <input type="email" id="cons-email" value="${consultant ? consultant.email : ''}" required class="w-full bg-slate-50 border border-slate-300 rounded px-3 py-2 font-bold text-slate-900 focus:bg-white focus:border-indigo-600 focus:outline-none">
         </div>
 
-        <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label class="block font-bold text-slate-800 mb-1">役割 <span class="text-rose-500">*</span></label>
-            <select id="cons-role-type" required class="w-full bg-slate-50 border border-slate-300 font-bold rounded px-2.5 py-1.5 text-slate-800 focus:outline-none">
-              <option value="CA" ${consultant && consultant.roleType === 'CA' ? 'selected' : ''}>CA (キャリアアドバイザー)</option>
-              <option value="RA" ${consultant && consultant.roleType === 'RA' ? 'selected' : ''}>RA (リクルーティングアドバイザー)</option>
-              <option value="ADMIN" ${consultant && consultant.roleType === 'ADMIN' ? 'selected' : ''}>管理者 (ADMIN)</option>
-            </select>
+        <!-- 役割 複数選択チェックボックス (指示書 2, 13項) -->
+        <div class="space-y-2 bg-slate-50 p-3 rounded-lg border border-slate-200">
+          <label class="block font-bold text-slate-800">担当役割 (複数選択可) <span class="text-rose-500">*</span></label>
+          <div class="flex flex-wrap items-center gap-4 pt-1 font-bold text-slate-700">
+            <label class="inline-flex items-center space-x-1.5 cursor-pointer">
+              <input type="checkbox" class="chk-cons-role rounded text-indigo-600 focus:ring-indigo-500" value="CA" ${hasCA ? 'checked' : ''}>
+              <span>CA (キャリアアドバイザー)</span>
+            </label>
+            <label class="inline-flex items-center space-x-1.5 cursor-pointer">
+              <input type="checkbox" class="chk-cons-role rounded text-indigo-600 focus:ring-indigo-500" value="RA" ${hasRA ? 'checked' : ''}>
+              <span>RA (リクルーティングアドバイザー)</span>
+            </label>
+            <label class="inline-flex items-center space-x-1.5 cursor-pointer">
+              <input type="checkbox" class="chk-cons-role rounded text-indigo-600 focus:ring-indigo-500" value="ADMIN" ${hasAdmin ? 'checked' : ''}>
+              <span>管理者 (ADMIN)</span>
+            </label>
           </div>
+          <p class="text-[11px] text-slate-500 mt-1">※CAとRAの両方にチェックを入れると両面担当者として登録されます。</p>
+        </div>
 
-          <div>
-            <label class="block font-bold text-slate-800 mb-1">有効・無効 <span class="text-rose-500">*</span></label>
-            <select id="cons-status" required class="w-full bg-slate-50 border border-slate-300 font-bold rounded px-2.5 py-1.5 text-slate-800 focus:outline-none">
-              <option value="active" ${!consultant || consultant.status !== 'inactive' ? 'selected' : ''}>有効</option>
-              <option value="inactive" ${consultant && consultant.status === 'inactive' ? 'selected' : ''}>無効</option>
-            </select>
-          </div>
+        <div>
+          <label class="block font-bold text-slate-800 mb-1">有効・無効 <span class="text-rose-500">*</span></label>
+          <select id="cons-status" required class="w-full bg-slate-50 border border-slate-300 font-bold rounded px-2.5 py-1.5 text-slate-800 focus:outline-none">
+            <option value="active" ${!consultant || consultant.status !== 'inactive' ? 'selected' : ''}>有効</option>
+            <option value="inactive" ${consultant && consultant.status === 'inactive' ? 'selected' : ''}>無効</option>
+          </select>
         </div>
       </form>
 
@@ -8464,7 +8930,6 @@ function openConsultantFormModal(consultant = null, onClose) {
   modalEl.querySelector('#btn-cons-submit')?.addEventListener('click', () => {
     const name = modalEl.querySelector('#cons-name').value.trim();
     const email = modalEl.querySelector('#cons-email').value.trim();
-    const roleType = modalEl.querySelector('#cons-role-type').value;
     const status = modalEl.querySelector('#cons-status').value;
 
     if (!name || !email) {
@@ -8472,17 +8937,77 @@ function openConsultantFormModal(consultant = null, onClose) {
       return;
     }
 
-    if (store.checkConsultantEmailDuplicate(email, consultant ? consultant.consultantId : null)) {
-      alert('このメールアドレスは、すでに登録されています。');
+    // チェックされた役割の収集
+    const checkedRoles = Array.from(modalEl.querySelectorAll('.chk-cons-role:checked')).map(cb => cb.value);
+    if (checkedRoles.length === 0) {
+      alert('役割を少なくとも1つ選択してください。（CA、RA、管理者のいずれか）');
       return;
     }
 
+    const currentConsId = consultant ? consultant.consultantId : null;
+
+    // 役割解除時の既存案件参照チェック (指示書 15項)
+    if (isEdit && consultant) {
+      if (hasRA && !checkedRoles.includes('RA')) {
+        const raInUseCount = store.checkConsultantRoleInUse(consultant.consultantId, 'RA');
+        if (raInUseCount > 0) {
+          alert(`この担当者は ${raInUseCount} 件の選考案件で RA に設定されています。\nRA 役割を外す前に、該当選考案件の担当 RA を変更してください。`);
+          return;
+        }
+      }
+      if (hasCA && !checkedRoles.includes('CA')) {
+        const caInUseCount = store.checkConsultantRoleInUse(consultant.consultantId, 'CA');
+        if (caInUseCount > 0) {
+          alert(`この担当者は ${caInUseCount} 件の選考案件で CA に設定されています。\nCA 役割を外す前に、該当選考案件の担当 CA を変更してください。`);
+          return;
+        }
+      }
+    }
+
+    // メールアドレス重複判定 (指示書 4, 5項)
+    const dupInfo = store.checkConsultantEmailDuplicateInfo(email, currentConsId, name);
+
+    if (dupInfo.isDuplicate) {
+      const existing = dupInfo.existingConsultant;
+
+      if (!dupInfo.isSameName) {
+        // 氏名が異なる場合 (指示書 5項)
+        alert(`【警告: メールアドレス重複】\n\nこのメールアドレスは別の担当者に登録されています。\n\n登録済み: ${existing.name}\n入力中: ${name}\n\n登録内容を確認してください。`);
+        return;
+      }
+
+      // 同一氏名の場合、既存データへ役割を追加 (指示書 4項)
+      const existingRoles = (existing.roles && Array.isArray(existing.roles)) ? existing.roles : [existing.roleType || 'CA'];
+      const mergedRoles = Array.from(new Set([...existingRoles, ...checkedRoles]));
+      const addedRoles = checkedRoles.filter(r => !existingRoles.includes(r));
+
+      const msg = `このメールアドレスは、すでに「${existing.name}」として登録されています。\n\n現在の役割: ${existingRoles.join('・')}\n追加する役割: ${addedRoles.length > 0 ? addedRoles.join('・') : '追加なし'}\n\n既存の担当者レコードへ役割を追加統合しますか？`;
+
+      if (confirm(msg)) {
+        store.saveConsultant({
+          consultantId: existing.consultantId,
+          name: existing.name,
+          email: existing.email,
+          roles: mergedRoles,
+          roleType: mergedRoles.includes('ADMIN') ? 'ADMIN' : (mergedRoles.includes('CA') ? 'CA' : 'RA'),
+          role: mergedRoles.includes('ADMIN') ? 'admin' : 'member',
+          status: status
+        });
+        modalEl.remove();
+        onClose();
+      }
+      return;
+    }
+
+    // 正常保存
+    const primaryRoleType = checkedRoles.includes('ADMIN') ? 'ADMIN' : (checkedRoles.includes('CA') ? 'CA' : 'RA');
     store.saveConsultant({
-      consultantId: consultant ? consultant.consultantId : undefined,
+      consultantId: currentConsId || undefined,
       name,
       email,
-      roleType,
-      role: roleType === 'ADMIN' ? 'admin' : 'member',
+      roles: checkedRoles,
+      roleType: primaryRoleType,
+      role: primaryRoleType === 'ADMIN' ? 'admin' : 'member',
       status
     });
 
@@ -8558,6 +9083,305 @@ function openReassignModal(fromConsultantId, fromConsultantName, counts, onProce
     modalEl.remove();
     onProceed();
   });
+}
+
+/**
+ * 管理者専用 データ管理 ＆ 初期化 ＆ 監査履歴セクション (指示書 4, 5, 8, 9, 10, 16, 17, 18, 19, 21項)
+ */
+function renderDataManagementSection(onUpdate) {
+  const previews = store.getDeletionPreviewCounts();
+  const demoPreview = previews.demo;
+  const allPreview = previews.all;
+  const auditLogs = store.getAuditLogs();
+
+  setTimeout(() => {
+    const section = document.getElementById('data-management-container');
+    if (!section) return;
+
+    // 1. デモデータ削除ボタン
+    section.querySelector('#btn-delete-demo-data')?.addEventListener('click', () => {
+      if (demoPreview.total === 0) {
+        alert('削除対象となるデモデータは現在存在しません。');
+        return;
+      }
+
+      const msg = `【デモデータ削除の確認】\n\nデモとして登録されたデータを削除しますか？\n\n■ 削除対象データ (計 ${demoPreview.total} 件):\n・デモ選考案件: ${demoPreview.selections} 件\n・デモ候補者: ${demoPreview.candidates} 件\n・デモ求人: ${demoPreview.jobs} 件\n・デモ企業: ${demoPreview.companies} 件\n・デモ関連履歴: ${demoPreview.histories + demoPreview.companyCommunications} 件\n\n※実データおよびログインコンサルタントは削除されません。`;
+      if (confirm(msg)) {
+        try {
+          const deleted = store.deleteDemoData();
+          alert(`初期化が完了しました。\n\n・選考案件: ${deleted.selections} 件削除\n・候補者: ${deleted.candidates} 件削除\n・求人: ${deleted.jobs} 件削除\n・企業: ${deleted.companies} 件削除\n・関連履歴: ${deleted.histories + deleted.companyCommunications} 件削除`);
+          onUpdate();
+        } catch (err) {
+          alert('エラーが発生しました: ' + err.message);
+        }
+      }
+    });
+
+    // 2. 種別選択削除
+    section.querySelector('#btn-delete-selected-data')?.addEventListener('click', () => {
+      const checkedInputs = Array.from(section.querySelectorAll('.chk-data-type:checked'));
+      if (checkedInputs.length === 0) {
+        alert('削除するデータ種別を1つ以上選択してください。');
+        return;
+      }
+
+      const selectedTypes = checkedInputs.map(i => i.value);
+      const typeNames = checkedInputs.map(i => i.getAttribute('data-name')).join('・');
+
+      if (confirm(`選択したデータ種別（${typeNames}）を削除します。\nよろしいですか？`)) {
+        try {
+          store.deleteSelectedDataTypes(selectedTypes);
+          alert('選択したデータ種別の削除が完了しました。');
+          onUpdate();
+        } catch (err) {
+          alert('削除エラー: ' + err.message);
+        }
+      }
+    });
+
+    // 3. 全業務データ初期化 (強い確認操作: 指示書 9項)
+    section.querySelector('#btn-open-reset-all-modal')?.addEventListener('click', () => {
+      if (allPreview.total === 0) {
+        alert('削除対象となる業務データは現在ありません。');
+        return;
+      }
+
+      let modalEl = document.getElementById('modal-reset-all-confirm');
+      if (modalEl) modalEl.remove();
+
+      modalEl = document.createElement('div');
+      modalEl.id = 'modal-reset-all-confirm';
+      modalEl.className = 'fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-xs flex items-center justify-center p-4';
+      modalEl.innerHTML = `
+        <div class="bg-white rounded-2xl shadow-2xl border border-rose-200 max-w-md w-full p-6 space-y-4 text-xs animate-fadeIn">
+          <div class="flex items-center space-x-2 text-rose-600 font-extrabold text-base border-b border-rose-100 pb-3">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            <span>全業務データの初期化 (危険操作)</span>
+          </div>
+
+          <div class="space-y-2 text-slate-700 font-medium leading-relaxed">
+            <p class="text-rose-700 font-bold">この操作により、候補者・企業・求人・選考案件・関連履歴などの全業務データ (${allPreview.total} 件) が完全に削除されます。</p>
+            <p class="text-slate-500 text-[11px]">※この操作は元に戻せません。管理者ログインアカウントおよびシステム設定は保護されます。</p>
+          </div>
+
+          <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-2">
+            <label class="block font-bold text-slate-800">
+              実行するには <span class="text-rose-600 font-mono font-black select-all">全データを初期化</span> と入力してください：
+            </label>
+            <input type="text" id="input-confirm-text-reset" placeholder="全データを初期化" class="w-full bg-white border border-slate-300 rounded px-3 py-2 text-slate-900 font-bold focus:outline-none focus:border-rose-600">
+          </div>
+
+          <div class="flex items-center justify-end space-x-3 pt-2">
+            <button id="btn-modal-cancel-reset" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded font-bold transition">
+              キャンセル
+            </button>
+            <button id="btn-modal-exec-reset" disabled class="px-4 py-2 bg-rose-600 hover:bg-rose-700 disabled:opacity-40 text-white rounded font-extrabold transition shadow-md">
+              初期化を実行
+            </button>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(modalEl);
+
+      const confirmInput = modalEl.querySelector('#input-confirm-text-reset');
+      const execBtn = modalEl.querySelector('#btn-modal-exec-reset');
+      const cancelBtn = modalEl.querySelector('#btn-modal-cancel-reset');
+
+      confirmInput.addEventListener('input', () => {
+        if (confirmInput.value.trim() === '全データを初期化') {
+          execBtn.removeAttribute('disabled');
+        } else {
+          execBtn.setAttribute('disabled', 'true');
+        }
+      });
+
+      cancelBtn.addEventListener('click', () => modalEl.remove());
+
+      execBtn.addEventListener('click', () => {
+        try {
+          execBtn.innerText = 'データを初期化中...';
+          execBtn.setAttribute('disabled', 'true');
+
+          const resultCounts = store.resetAllBusinessData();
+          modalEl.remove();
+          alert(`初期化が完了しました。\n\n・選考案件: ${resultCounts.selections} 件削除\n・候補者: ${resultCounts.candidates} 件削除\n・求人: ${resultCounts.jobs} 件削除\n・企業: ${resultCounts.companies} 件削除\n・関連履歴: ${resultCounts.histories + resultCounts.companyCommunications} 件削除\n\nログインアカウントとシステム設定は保持されています。`);
+          onUpdate();
+        } catch (err) {
+          alert('初期化エラー: ' + err.message);
+          modalEl.remove();
+        }
+      });
+    });
+
+    // 4. 手動デモデータ再作成
+    section.querySelector('#btn-seed-demo-data')?.addEventListener('click', () => {
+      if (confirm('初期デモデータ（サンプル候補者・企業・求人・選考案件）を再生成しますか？')) {
+        try {
+          const counts = store.seedDemoData();
+          alert(`デモデータの作成が完了しました。 (選考案件:${counts.selections}件, 候補者:${counts.candidates}件, 企業:${counts.companies}件)`);
+          onUpdate();
+        } catch (err) {
+          alert('エラー: ' + err.message);
+        }
+      }
+    });
+  }, 0);
+
+  return `
+    <div id="data-management-container" class="space-y-6">
+      <div class="border-b border-slate-200 pb-3">
+        <h3 class="text-base font-extrabold text-slate-900 flex items-center gap-2">
+          <span>⚙️ データ管理 ＆ 初期化設定</span>
+          <span class="text-[10px] bg-rose-100 text-rose-800 border border-rose-300 font-bold px-2 py-0.5 rounded">管理者専用</span>
+        </h3>
+        <p class="text-xs text-slate-500 mt-1">デモデータの削除、特定テーブルの削除、全業務データの初期化、および過去の操作履歴を確認できます。</p>
+      </div>
+
+      <!-- 1. デモデータのみ削除 (指示書 5-1項) -->
+      <div class="bg-amber-50/70 p-5 rounded-xl border border-amber-200 space-y-3">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h4 class="font-bold text-amber-950 text-sm flex items-center gap-2">
+              <span>🧹 デモデータのみ一括削除</span>
+              <span class="text-xs bg-amber-200/80 text-amber-900 px-2 py-0.5 rounded-full font-bold">デモ件数: 計 ${demoPreview.total} 件</span>
+            </h4>
+            <p class="text-xs text-slate-600 mt-1">
+              初期デモとして登録された候補者・企業・求人・選考案件・履歴を一括削除します。※手動登録された実データおよびログインコンサルタントは削除されません。
+            </p>
+          </div>
+
+          <button id="btn-delete-demo-data" ${demoPreview.total === 0 ? 'disabled' : ''} class="shrink-0 px-4 py-2 bg-amber-600 hover:bg-amber-700 disabled:opacity-40 text-white rounded-lg font-bold shadow-sm transition">
+            デモデータを削除 (${demoPreview.total}件)
+          </button>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-[11px] pt-1 font-semibold text-amber-900">
+          <div class="bg-white/80 p-2 rounded border border-amber-200">選考案件: ${demoPreview.selections} 件</div>
+          <div class="bg-white/80 p-2 rounded border border-amber-200">候補者: ${demoPreview.candidates} 件</div>
+          <div class="bg-white/80 p-2 rounded border border-amber-200">企業: ${demoPreview.companies} 件</div>
+          <div class="bg-white/80 p-2 rounded border border-amber-200">求人: ${demoPreview.jobs} 件</div>
+        </div>
+      </div>
+
+      <!-- 2. データ種別を選択して削除 (指示書 5-2項) -->
+      <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-4">
+        <div>
+          <h4 class="font-bold text-slate-900 text-sm">📋 データ種別を指定して削除</h4>
+          <p class="text-xs text-slate-500 mt-0.5">特定のデータ種別を選択して個別クリアできます。（削除時のデータ依存関係は自動で考慮されます）</p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+          <label class="inline-flex items-center space-x-2 bg-white p-2.5 rounded-lg border border-slate-200 cursor-pointer font-bold hover:border-indigo-300">
+            <input type="checkbox" class="chk-data-type rounded text-indigo-600" value="selections" data-name="選考案件">
+            <span>選考案件 (${allPreview.selections}件)</span>
+          </label>
+          <label class="inline-flex items-center space-x-2 bg-white p-2.5 rounded-lg border border-slate-200 cursor-pointer font-bold hover:border-indigo-300">
+            <input type="checkbox" class="chk-data-type rounded text-indigo-600" value="candidates" data-name="候補者">
+            <span>候補者 (${allPreview.candidates}件)</span>
+          </label>
+          <label class="inline-flex items-center space-x-2 bg-white p-2.5 rounded-lg border border-slate-200 cursor-pointer font-bold hover:border-indigo-300">
+            <input type="checkbox" class="chk-data-type rounded text-indigo-600" value="companies" data-name="企業">
+            <span>企業 (${allPreview.companies}件)</span>
+          </label>
+          <label class="inline-flex items-center space-x-2 bg-white p-2.5 rounded-lg border border-slate-200 cursor-pointer font-bold hover:border-indigo-300">
+            <input type="checkbox" class="chk-data-type rounded text-indigo-600" value="jobs" data-name="求人">
+            <span>求人 (${allPreview.jobs}件)</span>
+          </label>
+          <label class="inline-flex items-center space-x-2 bg-white p-2.5 rounded-lg border border-slate-200 cursor-pointer font-bold hover:border-indigo-300">
+            <input type="checkbox" class="chk-data-type rounded text-indigo-600" value="histories" data-name="選考変更履歴">
+            <span>選考変更履歴 (${allPreview.histories}件)</span>
+          </label>
+          <label class="inline-flex items-center space-x-2 bg-white p-2.5 rounded-lg border border-slate-200 cursor-pointer font-bold hover:border-indigo-300">
+            <input type="checkbox" class="chk-data-type rounded text-indigo-600" value="communications" data-name="企業対応履歴">
+            <span>企業対応履歴 (${allPreview.companyCommunications}件)</span>
+          </label>
+          <label class="inline-flex items-center space-x-2 bg-white p-2.5 rounded-lg border border-slate-200 cursor-pointer font-bold hover:border-indigo-300">
+            <input type="checkbox" class="chk-data-type rounded text-indigo-600" value="qTargets" data-name="Q目標">
+            <span>個人Q目標 (${allPreview.qTargets}件)</span>
+          </label>
+        </div>
+
+        <div class="flex justify-end pt-2">
+          <button id="btn-delete-selected-data" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white rounded-lg font-bold transition">
+            選択した種別のデータを削除
+          </button>
+        </div>
+      </div>
+
+      <!-- 3. 全業務データを初期化 (指示書 5-3, 9項) -->
+      <div class="bg-rose-50/70 p-5 rounded-xl border border-rose-200 space-y-3">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h4 class="font-extrabold text-rose-950 text-sm flex items-center gap-2">
+              <svg class="w-5 h-5 text-rose-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+              <span>全業務データを初期化 (本番データクリア)</span>
+            </h4>
+            <p class="text-xs text-slate-700 mt-1">
+              候補者・企業・求人・選考案件・履歴などの全業務データ (${allPreview.total} 件) を削除して初期状態へ戻します。<br>
+              <strong class="text-rose-900">※管理者・コンサルタントアカウントおよびログイン設定は削除されません。</strong>
+            </p>
+          </div>
+
+          <div class="flex items-center space-x-2 shrink-0">
+            <button id="btn-seed-demo-data" class="px-3 py-2 bg-white hover:bg-slate-100 text-slate-700 border border-slate-300 rounded-lg font-bold text-xs transition">
+              デモデータを再作成
+            </button>
+            <button id="btn-open-reset-all-modal" ${allPreview.total === 0 ? 'disabled' : ''} class="px-4 py-2 bg-rose-600 hover:bg-rose-700 disabled:opacity-40 text-white rounded-lg font-extrabold shadow-sm transition">
+              全業務データを初期化
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. 初期化履歴 (監査ログ: 指示書 17項) -->
+      <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+        <div class="px-4 py-3 bg-slate-900 text-white flex items-center justify-between">
+          <h4 class="font-bold text-xs">📜 初期化・データ操作監査履歴 (過去100件)</h4>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-50 text-slate-700 font-bold border-b border-slate-200">
+              <tr>
+                <th class="px-4 py-2.5">実行日時</th>
+                <th class="px-4 py-2.5">操作種別</th>
+                <th class="px-4 py-2.5">実行者</th>
+                <th class="px-4 py-2.5">対象件数・詳細</th>
+                <th class="px-3 py-2.5 text-center">結果</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100">
+              ${auditLogs.length === 0 ? `
+                <tr><td colspan="5" class="text-center py-6 text-slate-400">操作履歴はありません。</td></tr>
+              ` : auditLogs.map(log => {
+                const opLabelMap = {
+                  'DELETE_DEMO_DATA': 'デモデータ削除',
+                  'DELETE_SELECTED_DATA': '選択データ削除',
+                  'RESET_ALL_BUSINESS_DATA': '全業務データ初期化',
+                  'CREATE_DEMO_DATA': 'デモデータ再作成'
+                };
+                const countsText = typeof log.targetCounts === 'object' ? JSON.stringify(log.targetCounts) : String(log.targetCounts);
+                return `
+                  <tr class="hover:bg-slate-50 transition">
+                    <td class="px-4 py-2 font-mono text-slate-600">${new Date(log.executedAt).toLocaleString('ja-JP')}</td>
+                    <td class="px-4 py-2 font-bold text-indigo-900">${opLabelMap[log.operationType] || log.operationType}</td>
+                    <td class="px-4 py-2 font-semibold text-slate-800">${log.executedByName}</td>
+                    <td class="px-4 py-2 font-mono text-slate-600 truncate max-w-xs" title="${countsText}">${countsText}</td>
+                    <td class="px-3 py-2 text-center">
+                      <span class="px-2 py-0.5 rounded text-[10px] font-bold ${log.result === 'SUCCESS' ? 'bg-emerald-100 text-emerald-800 border border-emerald-300' : 'bg-rose-100 text-rose-800 border border-rose-300'}">
+                        ${log.result}
+                      </span>
+                    </td>
+                  </tr>
+                `;
+              }).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  `;
 }
 
 

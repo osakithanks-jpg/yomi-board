@@ -34,6 +34,53 @@ export function getFiscalQuarter(dateInput = new Date()) {
 }
 
 /**
+ * 当日・指定日付から年度・Q・対象期間情報をまとめて取得する共通関数 (指示書 3, 5項)
+ */
+export function getFiscalQuarterFromDate(dateInput = new Date()) {
+  const d = dateInput instanceof Date ? dateInput : new Date(dateInput);
+  const validDate = isNaN(d.getTime()) ? new Date() : d;
+
+  const fiscalYear = getFiscalYear(validDate);
+  const quarter = getFiscalQuarter(validDate);
+  const quarterNum = parseInt(quarter.replace('Q', ''), 10);
+  const rangeInfo = getQuarterDateRange(fiscalYear, quarter);
+
+  return {
+    fiscalYear,
+    quarter,
+    quarterNum,
+    startDate: rangeInfo.startDate,
+    endDate: rangeInfo.endDate,
+    label: rangeInfo.label,
+    months: rangeInfo.months
+  };
+}
+
+/**
+ * ヨミの保存形式の揺れを 0〜1 の小数へ正規化する共通関数 (指示書 9項)
+ * 例: 75 -> 0.75, "75%" -> 0.75, "75" -> 0.75, 0.75 -> 0.75, 不正値 -> 0
+ */
+export function normalizeYomi(value) {
+  if (value === null || value === undefined || value === '') return 0;
+
+  if (typeof value === 'string') {
+    let cleaned = value.trim().replace(/%/g, '');
+    let num = parseFloat(cleaned);
+    if (isNaN(num)) return 0;
+    if (num > 1) return Math.min(1, Math.max(0, num / 100));
+    return Math.min(1, Math.max(0, num));
+  }
+
+  if (typeof value === 'number') {
+    if (isNaN(value)) return 0;
+    if (value > 1) return Math.min(1, Math.max(0, value / 100));
+    return Math.min(1, Math.max(0, value));
+  }
+
+  return 0;
+}
+
+/**
  * 年度とQから開始日・終了日・ラベルを取得
  */
 export function getQuarterDateRange(fiscalYear, quarter) {
@@ -100,6 +147,56 @@ export function getQuarterFromYearMonth(yearMonthStr) {
     quarter,
     label: `${fiscalYear}年度 ${qNum}Q`
   };
+}
+
+/**
+ * 選考案件が対象Qに含まれるかを判定する（優先順位に基づくロジック: 指示書 14項）
+ */
+export function isSelectionInQuarter(selection, targetFiscalYear, targetQuarter) {
+  if (!selection) return false;
+  const fy = parseInt(targetFiscalYear, 10);
+
+  // 1. 完了見込み月 (YYYY-MM)
+  if (selection.expectedCompletionMonth) {
+    const qInfo = getQuarterFromYearMonth(selection.expectedCompletionMonth);
+    if (qInfo) {
+      if (targetQuarter === 'ALL') return qInfo.fiscalYear === fy;
+      return qInfo.fiscalYear === fy && qInfo.quarter === targetQuarter;
+    }
+  }
+
+  // 2. 着地見込みQ (オブジェクトまたは文字列)
+  if (selection.targetQuarter) {
+    if (typeof selection.targetQuarter === 'object') {
+      const qFY = parseInt(selection.targetQuarter.fiscalYear, 10);
+      const qQ = selection.targetQuarter.quarter;
+      if (targetQuarter === 'ALL') return qFY === fy;
+      return qFY === fy && qQ === targetQuarter;
+    }
+    if (typeof selection.targetQuarter === 'string') {
+      const match = selection.targetQuarter.match(/(\d{4}).*?(Q[1-4])/i);
+      if (match) {
+        const qFY = parseInt(match[1], 10);
+        const qQ = match[2].toUpperCase();
+        if (targetQuarter === 'ALL') return qFY === fy;
+        return qFY === fy && qQ === targetQuarter;
+      }
+    }
+  }
+
+  // 3. 内定承諾予定月 / 入社予定日
+  const targetDateStr = selection.expectedOfferMonth || selection.plannedJoinDate || selection.nextScheduleDate || selection.recommendationDate;
+  if (targetDateStr) {
+    const d = new Date(targetDateStr);
+    if (!isNaN(d.getTime())) {
+      const fYear = getFiscalYear(d);
+      const fQ = getFiscalQuarter(d);
+      if (targetQuarter === 'ALL') return fYear === fy;
+      return fYear === fy && fQ === targetQuarter;
+    }
+  }
+
+  return false;
 }
 
 /**

@@ -148,30 +148,30 @@ export const JOB_STATUSES = [
 ];
 
 export const INITIAL_CONSULTANTS = [
-  { consultantId: 'c1', name: '佐藤 健太', email: 'sato@thanks-partners.com', role: 'admin', roleType: 'ADMIN', status: 'active', displayOrder: 1, isArchived: false },
-  { consultantId: 'c2', name: '田中 美咲', email: 'tanaka@thanks-partners.com', role: 'member', roleType: 'CA', status: 'active', displayOrder: 2, isArchived: false },
-  { consultantId: 'c3', name: '鈴木 拓也', email: 'suzuki@thanks-partners.com', role: 'member', roleType: 'RA', status: 'active', displayOrder: 3, isArchived: false },
-  { consultantId: 'c4', name: '高橋 優花', email: 'takahashi@thanks-partners.com', role: 'member', roleType: 'CA', status: 'active', displayOrder: 4, isArchived: false }
+  { consultantId: 'c1', name: '佐藤 健太', email: 'sato@thanks-partners.com', role: 'admin', roleType: 'ADMIN', status: 'active', displayOrder: 1, isArchived: false, isDemo: true },
+  { consultantId: 'c2', name: '田中 美咲', email: 'tanaka@thanks-partners.com', role: 'member', roleType: 'CA', status: 'active', displayOrder: 2, isArchived: false, isDemo: true },
+  { consultantId: 'c3', name: '鈴木 拓也', email: 'suzuki@thanks-partners.com', role: 'member', roleType: 'RA', status: 'active', displayOrder: 3, isArchived: false, isDemo: true },
+  { consultantId: 'c4', name: '高橋 優花', email: 'takahashi@thanks-partners.com', role: 'member', roleType: 'CA', status: 'active', displayOrder: 4, isArchived: false, isDemo: true }
 ];
 
 export const INITIAL_COMPANIES = [
-  { companyId: 'comp1', name: '株式会社テクノロジーパートナーズ', rank: 'SS', primaryRaId: 'c3', primaryRaName: '鈴木 拓也', raConsultantId: 'c3', checkIntervalDays: 3, contactPerson: '山田 太郎', contactName: '山田 太郎', contactEmail: 'yamada@tech-partners.co.jp', isArchived: false },
-  { companyId: 'comp2', name: 'グローバルソリューションズ株式会社', rank: 'S', primaryRaId: 'c3', primaryRaName: '鈴木 拓也', raConsultantId: 'c3', checkIntervalDays: 7, contactPerson: '佐藤 二郎', contactName: '佐藤 二郎', contactEmail: 'sato@global-sol.co.jp', isArchived: false },
-  { companyId: 'comp3', name: 'イノベーション・システムズ', rank: 'A', primaryRaId: 'c3', primaryRaName: '鈴木 拓也', raConsultantId: 'c3', checkIntervalDays: 14, contactPerson: '高橋 三郎', contactName: '高橋 三郎', contactEmail: '', isArchived: false }
+  { companyId: 'comp1', name: '株式会社テクノロジーパートナーズ', rank: 'SS', primaryRaId: 'c3', primaryRaName: '鈴木 拓也', raConsultantId: 'c3', checkIntervalDays: 3, contactPerson: '山田 太郎', contactName: '山田 太郎', contactEmail: 'yamada@tech-partners.co.jp', isArchived: false, isDemo: true, createdBySeed: true },
+  { companyId: 'comp2', name: 'グローバルソリューションズ株式会社', rank: 'S', primaryRaId: 'c3', primaryRaName: '鈴木 拓也', raConsultantId: 'c3', checkIntervalDays: 7, contactPerson: '佐藤 二郎', contactName: '佐藤 二郎', contactEmail: 'sato@global-sol.co.jp', isArchived: false, isDemo: true, createdBySeed: true },
+  { companyId: 'comp3', name: 'イノベーション・システムズ', rank: 'A', primaryRaId: 'c3', primaryRaName: '鈴木 拓也', raConsultantId: 'c3', checkIntervalDays: 14, contactPerson: '高橋 三郎', contactName: '高橋 三郎', contactEmail: '', isArchived: false, isDemo: true, createdBySeed: true }
 ];
 
 export const INITIAL_JOBS = [
-  { jobId: 'job1', companyId: 'comp1', companyName: '株式会社テクノロジーパートナーズ', title: 'シニアフロントエンドエンジニア', location: '東京都千代田区', status: '募集中', raId: 'c3', raConsultantId: 'c3', isArchived: false },
-  { jobId: 'job2', companyId: 'comp1', companyName: '株式会社テクノロジーパートナーズ', title: 'バックエンドエンジニア (Go/Python)', location: '東京都千代田区', status: '募集中', raId: 'c3', raConsultantId: 'c3', isArchived: false },
-  { jobId: 'job3', companyId: 'comp2', companyName: 'グローバルソリューションズ株式会社', title: 'ITコンサルタント', location: '東京都港区', status: '募集中', raId: 'c3', raConsultantId: 'c3', isArchived: false },
-  { jobId: 'job4', companyId: 'comp3', companyName: 'イノベーション・システムズ', title: 'インフラエンジニア (AWS/K8s)', location: 'リモート可', status: '募集中', raId: 'c3', raConsultantId: 'c3', isArchived: false }
+  { jobId: 'job1', companyId: 'comp1', companyName: '株式会社テクノロジーパートナーズ', title: 'シニアフロントエンドエンジニア', location: '東京都千代田区', status: '募集中', raId: 'c3', raConsultantId: 'c3', isArchived: false, isDemo: true, createdBySeed: true },
+  { jobId: 'job2', companyId: 'comp1', companyName: '株式会社テクノロジーパートナーズ', title: 'バックエンドエンジニア (Go/Python)', location: '東京都千代田区', status: '募集中', raId: 'c3', raConsultantId: 'c3', isArchived: false, isDemo: true, createdBySeed: true },
+  { jobId: 'job3', companyId: 'comp2', companyName: 'グローバルソリューションズ株式会社', title: 'ITコンサルタント', location: '東京都港区', status: '募集中', raId: 'c3', raConsultantId: 'c3', isArchived: false, isDemo: true, createdBySeed: true },
+  { jobId: 'job4', companyId: 'comp3', companyName: 'イノベーション・システムズ', title: 'インフラエンジニア (AWS/K8s)', location: 'リモート可', status: '募集中', raId: 'c3', raConsultantId: 'c3', isArchived: false, isDemo: true, createdBySeed: true }
 ];
 
 export const INITIAL_CANDIDATES = [
-  { candidateId: 'cand1', name: '山田 太郎', kana: 'ヤマダ タロウ', caId: 'c2', caConsultantId: 'c2', caName: '田中 美咲', activityStatus: '選考中', entrySource: 'BIZREACH', entrySourceDetail: '', internalManagementNumber: 'CD-2026-001', isArchived: false },
-  { candidateId: 'cand2', name: '佐藤 花子', kana: 'サトウ ハナコ', caId: 'c2', caConsultantId: 'c2', caName: '田中 美咲', activityStatus: '選考中', entrySource: 'PASS_UP', entrySourceDetail: '若山さんスカウト', internalManagementNumber: 'CD-2026-002', isArchived: false },
-  { candidateId: 'cand3', name: '鈴木 一郎', kana: 'スズキ イチロウ', caId: 'c4', caConsultantId: 'c4', caName: '高橋 優花', activityStatus: '選考中', entrySource: 'AMBI', entrySourceDetail: '', internalManagementNumber: 'CD-2026-003', isArchived: false },
-  { candidateId: 'cand4', name: '高橋 健二', kana: 'タカハシ ケンジ', caId: 'c4', caConsultantId: 'c4', caName: '高橋 優花', activityStatus: '選考中', entrySource: 'RDS', entrySourceDetail: '', internalManagementNumber: 'CD-2026-004', isArchived: false }
+  { candidateId: 'cand1', name: '山田 太郎', kana: 'ヤマダ タロウ', caId: 'c2', caConsultantId: 'c2', caName: '田中 美咲', activityStatus: '選考中', entrySource: 'BIZREACH', entrySourceDetail: '', internalManagementNumber: 'CD-2026-001', isArchived: false, isDemo: true, createdBySeed: true },
+  { candidateId: 'cand2', name: '佐藤 花子', kana: 'サトウ ハナコ', caId: 'c2', caConsultantId: 'c2', caName: '田中 美咲', activityStatus: '選考中', entrySource: 'PASS_UP', entrySourceDetail: '若山さんスカウト', internalManagementNumber: 'CD-2026-002', isArchived: false, isDemo: true, createdBySeed: true },
+  { candidateId: 'cand3', name: '鈴木 一郎', kana: 'スズキ イチロウ', caId: 'c4', caConsultantId: 'c4', caName: '高橋 優花', activityStatus: '選考中', entrySource: 'AMBI', entrySourceDetail: '', internalManagementNumber: 'CD-2026-003', isArchived: false, isDemo: true, createdBySeed: true },
+  { candidateId: 'cand4', name: '高橋 健二', kana: 'タカハシ ケンジ', caId: 'c4', caConsultantId: 'c4', caName: '高橋 優花', activityStatus: '選考中', entrySource: 'RDS', entrySourceDetail: '', internalManagementNumber: 'CD-2026-004', isArchived: false, isDemo: true, createdBySeed: true }
 ];
 
 export const INITIAL_SELECTIONS = [
@@ -207,7 +207,9 @@ export const INITIAL_SELECTIONS = [
     companyActionStatus: '未対応',
     internalMemo: '志望度高く、他社選考なし。',
     companySharedComment: '候補者様も結果を楽しみにしております。',
-    isArchived: false
+    isArchived: false,
+    isDemo: true,
+    createdBySeed: true
   },
   {
     selectionId: 'sel2',
@@ -241,19 +243,21 @@ export const INITIAL_SELECTIONS = [
     companyActionStatus: '回答待ち',
     internalMemo: '競合A社と最終面接重複あり。',
     companySharedComment: '面接設定ありがとうございます。',
-    isArchived: false
+    isArchived: false,
+    isDemo: true,
+    createdBySeed: true
   }
 ];
 
 export const INITIAL_TARGETS = [];
 export const INITIAL_Q_TARGETS = [
-  { id: 'qt_c2_2025_Q4', consultantId: 'c2', fiscalYear: 2025, quarter: 'Q4', targetCount: 6 },
-  { id: 'qt_c4_2025_Q4', consultantId: 'c4', fiscalYear: 2025, quarter: 'Q4', targetCount: 5 }
+  { id: 'qt_c2_2025_Q4', consultantId: 'c2', fiscalYear: 2025, quarter: 'Q4', targetCount: 6, isDemo: true, createdBySeed: true },
+  { id: 'qt_c4_2025_Q4', consultantId: 'c4', fiscalYear: 2025, quarter: 'Q4', targetCount: 5, isDemo: true, createdBySeed: true }
 ];
 
 export const INITIAL_HISTORIES = [];
 export const INITIAL_EMAIL_TEMPLATES = [
-  { templateId: 't1', name: '標準・結果待ち催促', subject: '【選考進捗のご確認】貴社選考中候補者様の状況につきまして（サンクスパートナーズ）', body: 'いつも大変お世話になっております。' }
+  { templateId: 't1', name: '標準・結果待ち催促', subject: '【選考進捗のご確認】貴社選考中候補者様の状況につきまして（サンクスパートナーズ）', body: 'いつも大変お世話になっております。', isDemo: true, createdBySeed: true }
 ];
 
 export const INITIAL_COMPANY_COMMUNICATIONS = [];

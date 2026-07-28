@@ -30,9 +30,10 @@ const STORAGE_KEYS = {
   COMPANY_COMMUNICATIONS: 'selection_app_company_communications',
   COMPANY_SUBMISSIONS: 'selection_app_company_submissions',
   COMPANY_SUBMISSION_TEMPLATES: 'selection_app_company_submission_templates',
-  MASTER_AUDIT_LOGS: 'selection_app_master_audit_logs', // 監査ログ (指示書 14項)
+  MASTER_AUDIT_LOGS: 'selection_app_master_audit_logs',
   CURRENT_CONSULTANT: 'selection_app_current_consultant',
-  SIMULATED_ROLE: 'selection_app_simulated_role'
+  SIMULATED_ROLE: 'selection_app_simulated_role',
+  IS_INITIALIZED: 'selection_app_initialized' // デモデータ自動再生成停止フラグ (指示書 3, 14項)
 };
 
 class Store {
@@ -42,38 +43,63 @@ class Store {
   }
 
   initData() {
+    const isInitialized = localStorage.getItem(STORAGE_KEYS.IS_INITIALIZED) === 'true';
+
     if (!localStorage.getItem(STORAGE_KEYS.CONSULTANTS)) {
       localStorage.setItem(STORAGE_KEYS.CONSULTANTS, JSON.stringify(INITIAL_CONSULTANTS));
     }
-    if (!localStorage.getItem(STORAGE_KEYS.COMPANIES)) {
-      localStorage.setItem(STORAGE_KEYS.COMPANIES, JSON.stringify(INITIAL_COMPANIES));
+
+    // 初回起動時（初期化フラグがまだ未セットの場合）のみ初期デモデータを投入
+    if (!isInitialized) {
+      if (!localStorage.getItem(STORAGE_KEYS.COMPANIES)) {
+        localStorage.setItem(STORAGE_KEYS.COMPANIES, JSON.stringify(INITIAL_COMPANIES));
+      }
+      if (!localStorage.getItem(STORAGE_KEYS.JOBS)) {
+        localStorage.setItem(STORAGE_KEYS.JOBS, JSON.stringify(INITIAL_JOBS));
+      }
+      if (!localStorage.getItem(STORAGE_KEYS.CANDIDATES)) {
+        localStorage.setItem(STORAGE_KEYS.CANDIDATES, JSON.stringify(INITIAL_CANDIDATES));
+      }
+      if (!localStorage.getItem(STORAGE_KEYS.SELECTIONS)) {
+        localStorage.setItem(STORAGE_KEYS.SELECTIONS, JSON.stringify(INITIAL_SELECTIONS));
+      }
+      if (!localStorage.getItem(STORAGE_KEYS.TARGETS)) {
+        localStorage.setItem(STORAGE_KEYS.TARGETS, JSON.stringify(INITIAL_TARGETS));
+      }
+      if (!localStorage.getItem(STORAGE_KEYS.Q_TARGETS)) {
+        localStorage.setItem(STORAGE_KEYS.Q_TARGETS, JSON.stringify(INITIAL_Q_TARGETS));
+      }
+      if (!localStorage.getItem(STORAGE_KEYS.HISTORIES)) {
+        localStorage.setItem(STORAGE_KEYS.HISTORIES, JSON.stringify(INITIAL_HISTORIES));
+      }
+      if (!localStorage.getItem(STORAGE_KEYS.EMAIL_TEMPLATES)) {
+        localStorage.setItem(STORAGE_KEYS.EMAIL_TEMPLATES, JSON.stringify(INITIAL_EMAIL_TEMPLATES));
+      }
+      if (!localStorage.getItem(STORAGE_KEYS.COMPANY_COMMUNICATIONS)) {
+        localStorage.setItem(STORAGE_KEYS.COMPANY_COMMUNICATIONS, JSON.stringify(INITIAL_COMPANY_COMMUNICATIONS));
+      }
+      localStorage.setItem(STORAGE_KEYS.IS_INITIALIZED, 'true');
+    } else {
+      // 初期化済みだが各キーが存在しない場合は空配列で初期化
+      [
+        STORAGE_KEYS.COMPANIES,
+        STORAGE_KEYS.JOBS,
+        STORAGE_KEYS.CANDIDATES,
+        STORAGE_KEYS.SELECTIONS,
+        STORAGE_KEYS.TARGETS,
+        STORAGE_KEYS.Q_TARGETS,
+        STORAGE_KEYS.HISTORIES,
+        STORAGE_KEYS.EMAIL_TEMPLATES,
+        STORAGE_KEYS.COMPANY_COMMUNICATIONS
+      ].forEach(key => {
+        if (!localStorage.getItem(key)) {
+          localStorage.setItem(key, JSON.stringify([]));
+        }
+      });
     }
-    if (!localStorage.getItem(STORAGE_KEYS.JOBS)) {
-      localStorage.setItem(STORAGE_KEYS.JOBS, JSON.stringify(INITIAL_JOBS));
-    }
-    if (!localStorage.getItem(STORAGE_KEYS.CANDIDATES)) {
-      localStorage.setItem(STORAGE_KEYS.CANDIDATES, JSON.stringify(INITIAL_CANDIDATES));
-    }
-    if (!localStorage.getItem(STORAGE_KEYS.SELECTIONS)) {
-      localStorage.setItem(STORAGE_KEYS.SELECTIONS, JSON.stringify(INITIAL_SELECTIONS));
-    }
-    if (!localStorage.getItem(STORAGE_KEYS.TARGETS)) {
-      localStorage.setItem(STORAGE_KEYS.TARGETS, JSON.stringify(INITIAL_TARGETS));
-    }
-    if (!localStorage.getItem(STORAGE_KEYS.Q_TARGETS)) {
-      localStorage.setItem(STORAGE_KEYS.Q_TARGETS, JSON.stringify(INITIAL_Q_TARGETS));
-    }
+
     if (!localStorage.getItem(STORAGE_KEYS.Q_TARGET_HISTORIES)) {
       localStorage.setItem(STORAGE_KEYS.Q_TARGET_HISTORIES, JSON.stringify([]));
-    }
-    if (!localStorage.getItem(STORAGE_KEYS.HISTORIES)) {
-      localStorage.setItem(STORAGE_KEYS.HISTORIES, JSON.stringify(INITIAL_HISTORIES));
-    }
-    if (!localStorage.getItem(STORAGE_KEYS.EMAIL_TEMPLATES)) {
-      localStorage.setItem(STORAGE_KEYS.EMAIL_TEMPLATES, JSON.stringify(INITIAL_EMAIL_TEMPLATES));
-    }
-    if (!localStorage.getItem(STORAGE_KEYS.COMPANY_COMMUNICATIONS)) {
-      localStorage.setItem(STORAGE_KEYS.COMPANY_COMMUNICATIONS, JSON.stringify(INITIAL_COMPANY_COMMUNICATIONS));
     }
     if (!localStorage.getItem(STORAGE_KEYS.COMPANY_SUBMISSIONS)) {
       localStorage.setItem(STORAGE_KEYS.COMPANY_SUBMISSIONS, JSON.stringify([]));
@@ -106,6 +132,16 @@ class Store {
         c.roleType = c.role === 'admin' ? 'ADMIN' : (c.name.includes('鈴木') ? 'RA' : 'CA');
         consUpdated = true;
       }
+      if (!c.roles || !Array.isArray(c.roles) || c.roles.length === 0) {
+        if (c.roleType === 'ADMIN') {
+          c.roles = ['ADMIN', 'CA', 'RA'];
+        } else if (c.roleType === 'RA') {
+          c.roles = ['RA'];
+        } else {
+          c.roles = ['CA'];
+        }
+        consUpdated = true;
+      }
       if (c.status === undefined) {
         c.status = 'active';
         consUpdated = true;
@@ -117,6 +153,11 @@ class Store {
     });
     if (consUpdated) this.setItem(STORAGE_KEYS.CONSULTANTS, consultants);
 
+    const demoCompanyIds = new Set(['comp1', 'comp2', 'comp3']);
+    const demoJobIds = new Set(['job1', 'job2', 'job3', 'job4']);
+    const demoCandIds = new Set(['cand1', 'cand2', 'cand3', 'cand4']);
+    const demoSelIds = new Set(['sel1', 'sel2']);
+
     let compUpdated = false;
     const mapRank = (r) => {
       if (r === '最重要' || r === 'SS') return 'SS';
@@ -127,6 +168,11 @@ class Store {
     };
 
     companies.forEach(c => {
+      if (c.isDemo === undefined && (demoCompanyIds.has(c.companyId) || c.createdBySeed)) {
+        c.isDemo = true;
+        c.createdBySeed = true;
+        compUpdated = true;
+      }
       const newRank = mapRank(c.rank);
       if (c.rank !== newRank) {
         c.rank = newRank;
@@ -154,6 +200,11 @@ class Store {
 
     let jobsUpdated = false;
     jobs.forEach(j => {
+      if (j.isDemo === undefined && (demoJobIds.has(j.jobId) || j.createdBySeed)) {
+        j.isDemo = true;
+        j.createdBySeed = true;
+        jobsUpdated = true;
+      }
       if (!j.raId) {
         j.raId = j.raConsultantId || 'c3';
         jobsUpdated = true;
@@ -171,19 +222,27 @@ class Store {
 
     let candUpdated = false;
     candidates.forEach(c => {
+      if (c.isDemo === undefined && (demoCandIds.has(c.candidateId) || c.createdBySeed)) {
+        c.isDemo = true;
+        c.createdBySeed = true;
+        candUpdated = true;
+      }
       if (c.isArchived === undefined) {
         c.isArchived = false;
         candUpdated = true;
       }
     });
-    if (candUpdated) this.setItem(STORAGE_KEYS.CANDIDATES, candidates);
-
     let selUpdated = false;
     const companiesMap = new Map(companies.map(c => [c.companyId, c]));
     const candidatesMap = new Map(candidates.map(c => [c.candidateId, c]));
     const jobsMap = new Map(jobs.map(j => [j.jobId, j]));
 
     selections.forEach(s => {
+      if (s.isDemo === undefined && (demoSelIds.has(s.selectionId) || s.createdBySeed)) {
+        s.isDemo = true;
+        s.createdBySeed = true;
+        selUpdated = true;
+      }
       const cand = candidatesMap.get(s.candidateId);
       const comp = companiesMap.get(s.companyId);
       const job = jobsMap.get(s.jobId);
@@ -296,14 +355,46 @@ class Store {
   }
 
   checkConsultantEmailDuplicate(email, excludeConsultantId = null) {
-    if (!email) return false;
+    const info = this.checkConsultantEmailDuplicateInfo(email, excludeConsultantId);
+    return info.isDuplicate;
+  }
+
+  checkConsultantEmailDuplicateInfo(email, excludeConsultantId = null, inputName = '') {
+    if (!email) return { isDuplicate: false, existingConsultant: null, isSameName: false };
     const normalized = email.trim().toLowerCase();
     const list = this.getItem(STORAGE_KEYS.CONSULTANTS);
 
-    return list.some(c => {
+    const existing = list.find(c => {
       if (excludeConsultantId && c.consultantId === excludeConsultantId) return false;
       return (c.email || '').trim().toLowerCase() === normalized;
     });
+
+    if (!existing) {
+      return { isDuplicate: false, existingConsultant: null, isSameName: false };
+    }
+
+    const trimmedInputName = inputName.trim().replace(/\s+/g, '');
+    const trimmedExistingName = (existing.name || '').trim().replace(/\s+/g, '');
+    const isSameName = !trimmedInputName || trimmedInputName === trimmedExistingName;
+
+    return {
+      isDuplicate: true,
+      existingConsultant: existing,
+      isSameName
+    };
+  }
+
+  checkConsultantRoleInUse(consultantId, roleTypeToRemove) {
+    if (!consultantId || !roleTypeToRemove) return 0;
+    const selections = this.getItem(STORAGE_KEYS.SELECTIONS).filter(s => !s.isArchived);
+
+    if (roleTypeToRemove === 'CA') {
+      return selections.filter(s => s.caId === consultantId || s.caConsultantId === consultantId).length;
+    }
+    if (roleTypeToRemove === 'RA') {
+      return selections.filter(s => s.raId === consultantId || s.raConsultantId === consultantId).length;
+    }
+    return 0;
   }
 
   // --- Q目標管理メソッド (重要機能の完全復元) ---
@@ -696,11 +787,23 @@ class Store {
   }
 
   getCaConsultants() {
-    return this.getConsultants().filter(c => c.roleType === 'CA' || c.roleType === 'ADMIN');
+    return this.getConsultants().filter(c => {
+      if (c.status === 'inactive') return false;
+      if (c.roles && Array.isArray(c.roles)) {
+        return c.roles.includes('CA') || c.roles.includes('ADMIN');
+      }
+      return c.roleType === 'CA' || c.roleType === 'ADMIN';
+    });
   }
 
   getRaConsultants() {
-    return this.getConsultants().filter(c => c.roleType === 'RA' || c.roleType === 'ADMIN');
+    return this.getConsultants().filter(c => {
+      if (c.status === 'inactive') return false;
+      if (c.roles && Array.isArray(c.roles)) {
+        return c.roles.includes('RA') || c.roles.includes('ADMIN');
+      }
+      return c.roleType === 'RA' || c.roleType === 'ADMIN';
+    });
   }
 
   getCompanies(includeArchived = false) {
@@ -1158,6 +1261,212 @@ class Store {
       targets.push(targetData);
     }
     this.setItem(STORAGE_KEYS.TARGETS, targets);
+  }
+
+  // --- データ管理 ＆ 初期化 ＆ 監査ログ機能 (指示書 4〜22項) ---
+
+  recordAuditLog(operationType, targetCounts = {}, result = 'SUCCESS', errorMessage = '') {
+    const logs = this.getItem(STORAGE_KEYS.MASTER_AUDIT_LOGS);
+    const current = this.getCurrentConsultant();
+    const log = {
+      id: 'audit_' + Date.now() + '_' + Math.random().toString(36).substr(2, 4),
+      operationType,
+      targetCounts,
+      executedBy: current.consultantId || 'unknown',
+      executedByName: current.name || '不明',
+      executedAt: new Date().toISOString(),
+      result,
+      errorMessage
+    };
+    logs.unshift(log);
+    this.setItem(STORAGE_KEYS.MASTER_AUDIT_LOGS, logs.slice(0, 100)); // 最新100件保存
+    return log;
+  }
+
+  getAuditLogs() {
+    return this.getItem(STORAGE_KEYS.MASTER_AUDIT_LOGS);
+  }
+
+  getDeletionPreviewCounts() {
+    const candidates = this.getItem(STORAGE_KEYS.CANDIDATES);
+    const companies = this.getItem(STORAGE_KEYS.COMPANIES);
+    const jobs = this.getItem(STORAGE_KEYS.JOBS);
+    const selections = this.getItem(STORAGE_KEYS.SELECTIONS);
+    const histories = this.getItem(STORAGE_KEYS.HISTORIES);
+    const companyCommunications = this.getItem(STORAGE_KEYS.COMPANY_COMMUNICATIONS);
+    const companySubmissions = this.getItem(STORAGE_KEYS.COMPANY_SUBMISSIONS);
+    const qTargets = this.getItem(STORAGE_KEYS.Q_TARGETS);
+    const emailTemplates = this.getItem(STORAGE_KEYS.EMAIL_TEMPLATES);
+
+    const isDemoItem = item => Boolean(item.isDemo || item.createdBySeed);
+
+    return {
+      demo: {
+        candidates: candidates.filter(isDemoItem).length,
+        companies: companies.filter(isDemoItem).length,
+        jobs: jobs.filter(isDemoItem).length,
+        selections: selections.filter(isDemoItem).length,
+        histories: histories.filter(isDemoItem).length,
+        companyCommunications: companyCommunications.filter(isDemoItem).length,
+        companySubmissions: companySubmissions.filter(isDemoItem).length,
+        qTargets: qTargets.filter(isDemoItem).length,
+        emailTemplates: emailTemplates.filter(isDemoItem).length,
+        total: candidates.filter(isDemoItem).length +
+               companies.filter(isDemoItem).length +
+               jobs.filter(isDemoItem).length +
+               selections.filter(isDemoItem).length +
+               histories.filter(isDemoItem).length +
+               companyCommunications.filter(isDemoItem).length +
+               qTargets.filter(isDemoItem).length
+      },
+      all: {
+        candidates: candidates.length,
+        companies: companies.length,
+        jobs: jobs.length,
+        selections: selections.length,
+        histories: histories.length,
+        companyCommunications: companyCommunications.length,
+        companySubmissions: companySubmissions.length,
+        qTargets: qTargets.length,
+        emailTemplates: emailTemplates.length,
+        total: candidates.length + companies.length + jobs.length + selections.length + histories.length + companyCommunications.length + qTargets.length
+      }
+    };
+  }
+
+  deleteDemoData() {
+    if (!this.isAdmin()) throw new Error('管理者権限が必要です。');
+
+    const isDemoItem = item => Boolean(item.isDemo || item.createdBySeed);
+
+    const demoSelections = this.getItem(STORAGE_KEYS.SELECTIONS).filter(isDemoItem);
+    const demoSelectionIds = new Set(demoSelections.map(s => s.selectionId));
+
+    // 削除対象カウント
+    const previewCounts = this.getDeletionPreviewCounts().demo;
+
+    // 1. 子データから削除
+    const histories = this.getItem(STORAGE_KEYS.HISTORIES).filter(h => !isDemoItem(h) && !demoSelectionIds.has(h.selectionId));
+    const comms = this.getItem(STORAGE_KEYS.COMPANY_COMMUNICATIONS).filter(c => !isDemoItem(c) && !demoSelectionIds.has(c.selectionId));
+    const subs = this.getItem(STORAGE_KEYS.COMPANY_SUBMISSIONS).filter(s => !isDemoItem(s) && !demoSelectionIds.has(s.selectionId));
+    const selections = this.getItem(STORAGE_KEYS.SELECTIONS).filter(s => !isDemoItem(s));
+    const candidates = this.getItem(STORAGE_KEYS.CANDIDATES).filter(c => !isDemoItem(c));
+    const jobs = this.getItem(STORAGE_KEYS.JOBS).filter(j => !isDemoItem(j));
+    const companies = this.getItem(STORAGE_KEYS.COMPANIES).filter(c => !isDemoItem(c));
+    const qTargets = this.getItem(STORAGE_KEYS.Q_TARGETS).filter(q => !isDemoItem(q));
+
+    this.setItem(STORAGE_KEYS.HISTORIES, histories);
+    this.setItem(STORAGE_KEYS.COMPANY_COMMUNICATIONS, comms);
+    this.setItem(STORAGE_KEYS.COMPANY_SUBMISSIONS, subs);
+    this.setItem(STORAGE_KEYS.SELECTIONS, selections);
+    this.setItem(STORAGE_KEYS.CANDIDATES, candidates);
+    this.setItem(STORAGE_KEYS.JOBS, jobs);
+    this.setItem(STORAGE_KEYS.COMPANIES, companies);
+    this.setItem(STORAGE_KEYS.Q_TARGETS, qTargets);
+
+    this.setItem(STORAGE_KEYS.IS_INITIALIZED, 'true');
+
+    this.recordAuditLog('DELETE_DEMO_DATA', previewCounts);
+    this.notifyListeners();
+
+    return previewCounts;
+  }
+
+  deleteSelectedDataTypes(selectedTypes = []) {
+    if (!this.isAdmin()) throw new Error('管理者権限が必要です。');
+
+    const typesSet = new Set(selectedTypes);
+    const deletedCounts = {};
+
+    if (typesSet.has('histories') || typesSet.has('selections')) {
+      deletedCounts.histories = this.getItem(STORAGE_KEYS.HISTORIES).length;
+      this.setItem(STORAGE_KEYS.HISTORIES, []);
+    }
+    if (typesSet.has('communications') || typesSet.has('selections')) {
+      deletedCounts.companyCommunications = this.getItem(STORAGE_KEYS.COMPANY_COMMUNICATIONS).length;
+      this.setItem(STORAGE_KEYS.COMPANY_COMMUNICATIONS, []);
+    }
+    if (typesSet.has('submissions') || typesSet.has('selections')) {
+      deletedCounts.companySubmissions = this.getItem(STORAGE_KEYS.COMPANY_SUBMISSIONS).length;
+      this.setItem(STORAGE_KEYS.COMPANY_SUBMISSIONS, []);
+    }
+    if (typesSet.has('selections')) {
+      deletedCounts.selections = this.getItem(STORAGE_KEYS.SELECTIONS).length;
+      this.setItem(STORAGE_KEYS.SELECTIONS, []);
+    }
+    if (typesSet.has('candidates')) {
+      deletedCounts.candidates = this.getItem(STORAGE_KEYS.CANDIDATES).length;
+      this.setItem(STORAGE_KEYS.CANDIDATES, []);
+    }
+    if (typesSet.has('jobs')) {
+      deletedCounts.jobs = this.getItem(STORAGE_KEYS.JOBS).length;
+      this.setItem(STORAGE_KEYS.JOBS, []);
+    }
+    if (typesSet.has('companies')) {
+      deletedCounts.companies = this.getItem(STORAGE_KEYS.COMPANIES).length;
+      this.setItem(STORAGE_KEYS.COMPANIES, []);
+    }
+    if (typesSet.has('qTargets')) {
+      deletedCounts.qTargets = this.getItem(STORAGE_KEYS.Q_TARGETS).length;
+      this.setItem(STORAGE_KEYS.Q_TARGETS, []);
+    }
+
+    this.setItem(STORAGE_KEYS.IS_INITIALIZED, 'true');
+
+    this.recordAuditLog('DELETE_SELECTED_DATA', { selectedTypes, ...deletedCounts });
+    this.notifyListeners();
+
+    return deletedCounts;
+  }
+
+  resetAllBusinessData() {
+    if (!this.isAdmin()) throw new Error('管理者権限が必要です。');
+
+    const previewCounts = this.getDeletionPreviewCounts().all;
+
+    // 業務データを全て空配列にセット（コンサルタント・認証・システム設定は保護）
+    this.setItem(STORAGE_KEYS.SELECTIONS, []);
+    this.setItem(STORAGE_KEYS.CANDIDATES, []);
+    this.setItem(STORAGE_KEYS.JOBS, []);
+    this.setItem(STORAGE_KEYS.COMPANIES, []);
+    this.setItem(STORAGE_KEYS.HISTORIES, []);
+    this.setItem(STORAGE_KEYS.COMPANY_COMMUNICATIONS, []);
+    this.setItem(STORAGE_KEYS.COMPANY_SUBMISSIONS, []);
+    this.setItem(STORAGE_KEYS.TARGETS, []);
+    this.setItem(STORAGE_KEYS.Q_TARGETS, []);
+    this.setItem(STORAGE_KEYS.Q_TARGET_HISTORIES, []);
+
+    // デモ再自動生成を停止する初期化フラグを確実に立てる
+    this.setItem(STORAGE_KEYS.IS_INITIALIZED, 'true');
+
+    this.recordAuditLog('RESET_ALL_BUSINESS_DATA', previewCounts);
+    this.notifyListeners();
+
+    return previewCounts;
+  }
+
+  seedDemoData() {
+    if (!this.isAdmin()) throw new Error('管理者権限が必要です。');
+
+    this.setItem(STORAGE_KEYS.COMPANIES, INITIAL_COMPANIES);
+    this.setItem(STORAGE_KEYS.JOBS, INITIAL_JOBS);
+    this.setItem(STORAGE_KEYS.CANDIDATES, INITIAL_CANDIDATES);
+    this.setItem(STORAGE_KEYS.SELECTIONS, INITIAL_SELECTIONS);
+    this.setItem(STORAGE_KEYS.Q_TARGETS, INITIAL_Q_TARGETS);
+    this.setItem(STORAGE_KEYS.EMAIL_TEMPLATES, INITIAL_EMAIL_TEMPLATES);
+    this.setItem(STORAGE_KEYS.IS_INITIALIZED, 'true');
+
+    const counts = {
+      candidates: INITIAL_CANDIDATES.length,
+      companies: INITIAL_COMPANIES.length,
+      jobs: INITIAL_JOBS.length,
+      selections: INITIAL_SELECTIONS.length
+    };
+
+    this.recordAuditLog('CREATE_DEMO_DATA', counts);
+    this.notifyListeners();
+
+    return counts;
   }
 }
 
